@@ -1,0 +1,187 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/yvan/.nvm/versions/node/v6.17.1/bin/node',
+1 verbose cli   '/Users/yvan/.nvm/versions/node/v6.17.1/bin/npm',
+1 verbose cli   'shrinkwrap' ]
+2 info using npm@3.10.10
+3 info using node@v6.17.1
+4 info lifecycle LCP-Mobile@1.0.2~preshrinkwrap: LCP-Mobile@1.0.2
+5 silly lifecycle LCP-Mobile@1.0.2~preshrinkwrap: no script for preshrinkwrap, continuing
+6 warn shrinkwrap Excluding devDependency: /ansi-align
+7 warn shrinkwrap Excluding devDependency: /bluebird
+8 warn shrinkwrap Excluding devDependency: /boom
+9 warn shrinkwrap Excluding devDependency: /boxen
+10 warn shrinkwrap Excluding devDependency: /capture-stack-trace
+11 warn shrinkwrap Excluding devDependency: /cli-boxes
+12 warn shrinkwrap Excluding devDependency: /configstore
+13 warn shrinkwrap Excluding devDependency: /create-error-class
+14 warn shrinkwrap Excluding devDependency: /cryptiles
+15 warn shrinkwrap Excluding devDependency: /ctype
+16 warn shrinkwrap Excluding devDependency: /decompress-zip
+17 warn shrinkwrap Excluding devDependency: /deprecate
+18 warn shrinkwrap Excluding devDependency: /dot-prop
+19 warn shrinkwrap Excluding devDependency: /fill-keys
+20 warn shrinkwrap Excluding devDependency: /filled-array
+21 warn shrinkwrap Excluding devDependency: /fs-extra
+22 warn shrinkwrap Excluding devDependency: /got
+23 warn shrinkwrap Excluding devDependency: /graceful-fs-extra
+24 warn shrinkwrap Excluding devDependency: /graceful-ncp
+25 warn shrinkwrap Excluding devDependency: /grunt-nw-builder
+26 warn shrinkwrap Excluding devDependency: /hawk
+27 warn shrinkwrap Excluding devDependency: /hoek
+28 warn shrinkwrap Excluding devDependency: /is-npm
+29 warn shrinkwrap Excluding devDependency: /is-obj
+30 warn shrinkwrap Excluding devDependency: /is-object
+31 warn shrinkwrap Excluding devDependency: /is-redirect
+32 warn shrinkwrap Excluding devDependency: /is-retry-allowed
+33 warn shrinkwrap Excluding devDependency: /is-stream
+34 warn shrinkwrap Excluding devDependency: /jsonfile
+35 warn shrinkwrap Excluding devDependency: /klaw
+36 warn shrinkwrap Excluding devDependency: /latest-version
+37 warn shrinkwrap Excluding devDependency: /lowercase-keys
+38 warn shrinkwrap Excluding devDependency: /lru-cache
+39 warn shrinkwrap Excluding devDependency: /merge-descriptors
+40 warn shrinkwrap Excluding devDependency: /mime
+41 warn shrinkwrap Excluding devDependency: /mkpath
+42 warn shrinkwrap Excluding devDependency: /module-not-found-error
+43 warn shrinkwrap Excluding devDependency: /natives
+44 warn shrinkwrap Excluding devDependency: /ncp
+45 warn shrinkwrap Excluding devDependency: /node-status-codes
+46 warn shrinkwrap Excluding devDependency: /nw-builder
+47 warn shrinkwrap Excluding devDependency: /optimist
+48 warn shrinkwrap Excluding devDependency: /package-json
+49 warn shrinkwrap Excluding devDependency: /platform-overrides
+50 warn shrinkwrap Excluding devDependency: /plist
+51 warn shrinkwrap Excluding devDependency: /prepend-http
+52 warn shrinkwrap Excluding devDependency: /proxyquire
+53 warn shrinkwrap Excluding devDependency: /q
+54 warn shrinkwrap Excluding devDependency: /rcedit
+55 warn shrinkwrap Excluding devDependency: /read-all-stream
+56 warn shrinkwrap Excluding devDependency: /recursive-readdir-sync
+57 warn shrinkwrap Excluding devDependency: /registry-auth-token
+58 warn shrinkwrap Excluding devDependency: /registry-url
+59 warn shrinkwrap Excluding devDependency: /semver-diff
+60 warn shrinkwrap Excluding devDependency: /sigmund
+61 warn shrinkwrap Excluding devDependency: /simple-glob
+62 warn shrinkwrap Excluding devDependency: /slide
+63 warn shrinkwrap Excluding devDependency: /sntp
+64 warn shrinkwrap Excluding devDependency: /stringstream
+65 warn shrinkwrap Excluding devDependency: /temp
+66 warn shrinkwrap Excluding devDependency: /timed-out
+67 warn shrinkwrap Excluding devDependency: /touch
+68 warn shrinkwrap Excluding devDependency: /unzip-response
+69 warn shrinkwrap Excluding devDependency: /update-notifier
+70 warn shrinkwrap Excluding devDependency: /url-parse-lax
+71 warn shrinkwrap Excluding devDependency: /widest-line
+72 warn shrinkwrap Excluding devDependency: /winresourcer
+73 warn shrinkwrap Excluding devDependency: /write-file-atomic
+74 warn shrinkwrap Excluding devDependency: /xdg-basedir
+75 warn shrinkwrap Excluding devDependency: /xmlbuilder
+76 warn shrinkwrap Excluding devDependency: /xmldom
+77 info lifecycle LCP-Mobile@1.0.2~shrinkwrap: LCP-Mobile@1.0.2
+78 silly lifecycle LCP-Mobile@1.0.2~shrinkwrap: no script for shrinkwrap, continuing
+79 verbose stack Error: Problems were encountered
+79 verbose stack Please correct and try again.
+79 verbose stack missing: ocore@git+https://github.com/byteball/ocore.git, required by LCP-Mobile@1.0.2
+79 verbose stack extraneous: bignumber.js@8.1.1 /Users/yvan/Downloads/LCPwallet/node_modules/bignumber.js
+79 verbose stack extraneous: commander@2.20.0 /Users/yvan/Downloads/LCPwallet/node_modules/commander
+79 verbose stack extraneous: discontinuous-range@1.0.0 /Users/yvan/Downloads/LCPwallet/node_modules/discontinuous-range
+79 verbose stack extraneous: dotenv@5.0.1 /Users/yvan/Downloads/LCPwallet/node_modules/dotenv
+79 verbose stack extraneous: fs-minipass@1.2.6 /Users/yvan/Downloads/LCPwallet/node_modules/fs-minipass
+79 verbose stack extraneous: ignore-walk@3.0.1 /Users/yvan/Downloads/LCPwallet/node_modules/ignore-walk
+79 verbose stack extraneous: ip@1.1.5 /Users/yvan/Downloads/LCPwallet/node_modules/ip
+79 verbose stack extraneous: lcp_lib@1.0.0 /Users/yvan/Downloads/LCPwallet/node_modules/ocore
+79 verbose stack extraneous: lodash@4.17.11 /Users/yvan/Downloads/LCPwallet/node_modules/ocore/node_modules/lodash
+79 verbose stack extraneous: ws@7.0.1 /Users/yvan/Downloads/LCPwallet/node_modules/ocore/node_modules/ws
+79 verbose stack extraneous: minipass@2.3.5 /Users/yvan/Downloads/LCPwallet/node_modules/minipass
+79 verbose stack extraneous: minizlib@1.2.1 /Users/yvan/Downloads/LCPwallet/node_modules/minizlib
+79 verbose stack extraneous: moo@0.5.0 /Users/yvan/Downloads/LCPwallet/node_modules/moo
+79 verbose stack extraneous: mysql@2.17.1 /Users/yvan/Downloads/LCPwallet/node_modules/mysql
+79 verbose stack extraneous: bignumber.js@7.2.1 /Users/yvan/Downloads/LCPwallet/node_modules/mysql/node_modules/bignumber.js
+79 verbose stack extraneous: readable-stream@2.3.6 /Users/yvan/Downloads/LCPwallet/node_modules/mysql/node_modules/readable-stream
+79 verbose stack extraneous: safe-buffer@5.1.2 /Users/yvan/Downloads/LCPwallet/node_modules/mysql/node_modules/safe-buffer
+79 verbose stack extraneous: string_decoder@1.1.1 /Users/yvan/Downloads/LCPwallet/node_modules/mysql/node_modules/string_decoder
+79 verbose stack extraneous: nearley@2.16.0 /Users/yvan/Downloads/LCPwallet/node_modules/nearley
+79 verbose stack extraneous: moo@0.4.3 /Users/yvan/Downloads/LCPwallet/node_modules/nearley/node_modules/moo
+79 verbose stack extraneous: needle@2.4.0 /Users/yvan/Downloads/LCPwallet/node_modules/needle
+79 verbose stack extraneous: debug@3.2.6 /Users/yvan/Downloads/LCPwallet/node_modules/needle/node_modules/debug
+79 verbose stack extraneous: node-pre-gyp@0.11.0 /Users/yvan/Downloads/LCPwallet/node_modules/node-pre-gyp
+79 verbose stack extraneous: detect-libc@1.0.3 /Users/yvan/Downloads/LCPwallet/node_modules/node-pre-gyp/node_modules/detect-libc
+79 verbose stack extraneous: nopt@4.0.1 /Users/yvan/Downloads/LCPwallet/node_modules/node-pre-gyp/node_modules/nopt
+79 verbose stack extraneous: tar@4.4.10 /Users/yvan/Downloads/LCPwallet/node_modules/node-pre-gyp/node_modules/tar
+79 verbose stack extraneous: node4mailer@4.0.3 /Users/yvan/Downloads/LCPwallet/node_modules/node4mailer
+79 verbose stack extraneous: npm-bundled@1.0.6 /Users/yvan/Downloads/LCPwallet/node_modules/npm-bundled
+79 verbose stack extraneous: npm-packlist@1.4.4 /Users/yvan/Downloads/LCPwallet/node_modules/npm-packlist
+79 verbose stack extraneous: options@0.0.6 /Users/yvan/Downloads/LCPwallet/node_modules/options
+79 verbose stack extraneous: railroad-diagrams@1.0.0 /Users/yvan/Downloads/LCPwallet/node_modules/railroad-diagrams
+79 verbose stack extraneous: randexp@0.4.6 /Users/yvan/Downloads/LCPwallet/node_modules/randexp
+79 verbose stack extraneous: sax@1.2.4 /Users/yvan/Downloads/LCPwallet/node_modules/sax
+79 verbose stack extraneous: smart-buffer@1.1.15 /Users/yvan/Downloads/LCPwallet/node_modules/smart-buffer
+79 verbose stack extraneous: socks@1.1.10 /Users/yvan/Downloads/LCPwallet/node_modules/socks
+79 verbose stack extraneous: sqlite3@4.0.9 /Users/yvan/Downloads/LCPwallet/node_modules/sqlite3
+79 verbose stack extraneous: sqlstring@2.3.1 /Users/yvan/Downloads/LCPwallet/node_modules/sqlstring
+79 verbose stack extraneous: thirty-two@1.0.2 /Users/yvan/Downloads/LCPwallet/node_modules/thirty-two
+79 verbose stack extraneous: ultron@1.0.2 /Users/yvan/Downloads/LCPwallet/node_modules/ultron
+79 verbose stack extraneous: ws@1.1.5 /Users/yvan/Downloads/LCPwallet/node_modules/ws
+79 verbose stack extraneous: yallist@3.0.3 /Users/yvan/Downloads/LCPwallet/node_modules/yallist
+79 verbose stack     at shrinkwrap_ (/Users/yvan/.nvm/versions/node/v6.17.1/lib/node_modules/npm/lib/shrinkwrap.js:128:15)
+79 verbose stack     at Array.<anonymous> (/Users/yvan/.nvm/versions/node/v6.17.1/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+79 verbose stack     at LOOP (/Users/yvan/.nvm/versions/node/v6.17.1/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+79 verbose stack     at /Users/yvan/.nvm/versions/node/v6.17.1/lib/node_modules/npm/node_modules/slide/lib/chain.js:18:7
+79 verbose stack     at done (/Users/yvan/.nvm/versions/node/v6.17.1/lib/node_modules/npm/lib/utils/lifecycle.js:132:5)
+79 verbose stack     at LOOP (/Users/yvan/.nvm/versions/node/v6.17.1/lib/node_modules/npm/node_modules/slide/lib/chain.js:7:26)
+79 verbose stack     at /Users/yvan/.nvm/versions/node/v6.17.1/lib/node_modules/npm/node_modules/slide/lib/chain.js:18:7
+79 verbose stack     at /Users/yvan/.nvm/versions/node/v6.17.1/lib/node_modules/npm/lib/utils/lifecycle.js:294:20
+79 verbose stack     at /Users/yvan/.nvm/versions/node/v6.17.1/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:264:29
+79 verbose stack     at FSReqWrap.oncomplete (fs.js:123:15)
+80 verbose cwd /Users/yvan/Downloads/LCPwallet
+81 error Darwin 18.6.0
+82 error argv "/Users/yvan/.nvm/versions/node/v6.17.1/bin/node" "/Users/yvan/.nvm/versions/node/v6.17.1/bin/npm" "shrinkwrap"
+83 error node v6.17.1
+84 error npm  v3.10.10
+85 error Problems were encountered
+85 error Please correct and try again.
+85 error missing: ocore@git+https://github.com/byteball/ocore.git, required by LCP-Mobile@1.0.2
+85 error extraneous: bignumber.js@8.1.1 /Users/yvan/Downloads/LCPwallet/node_modules/bignumber.js
+85 error extraneous: commander@2.20.0 /Users/yvan/Downloads/LCPwallet/node_modules/commander
+85 error extraneous: discontinuous-range@1.0.0 /Users/yvan/Downloads/LCPwallet/node_modules/discontinuous-range
+85 error extraneous: dotenv@5.0.1 /Users/yvan/Downloads/LCPwallet/node_modules/dotenv
+85 error extraneous: fs-minipass@1.2.6 /Users/yvan/Downloads/LCPwallet/node_modules/fs-minipass
+85 error extraneous: ignore-walk@3.0.1 /Users/yvan/Downloads/LCPwallet/node_modules/ignore-walk
+85 error extraneous: ip@1.1.5 /Users/yvan/Downloads/LCPwallet/node_modules/ip
+85 error extraneous: lcp_lib@1.0.0 /Users/yvan/Downloads/LCPwallet/node_modules/ocore
+85 error extraneous: lodash@4.17.11 /Users/yvan/Downloads/LCPwallet/node_modules/ocore/node_modules/lodash
+85 error extraneous: ws@7.0.1 /Users/yvan/Downloads/LCPwallet/node_modules/ocore/node_modules/ws
+85 error extraneous: minipass@2.3.5 /Users/yvan/Downloads/LCPwallet/node_modules/minipass
+85 error extraneous: minizlib@1.2.1 /Users/yvan/Downloads/LCPwallet/node_modules/minizlib
+85 error extraneous: moo@0.5.0 /Users/yvan/Downloads/LCPwallet/node_modules/moo
+85 error extraneous: mysql@2.17.1 /Users/yvan/Downloads/LCPwallet/node_modules/mysql
+85 error extraneous: bignumber.js@7.2.1 /Users/yvan/Downloads/LCPwallet/node_modules/mysql/node_modules/bignumber.js
+85 error extraneous: readable-stream@2.3.6 /Users/yvan/Downloads/LCPwallet/node_modules/mysql/node_modules/readable-stream
+85 error extraneous: safe-buffer@5.1.2 /Users/yvan/Downloads/LCPwallet/node_modules/mysql/node_modules/safe-buffer
+85 error extraneous: string_decoder@1.1.1 /Users/yvan/Downloads/LCPwallet/node_modules/mysql/node_modules/string_decoder
+85 error extraneous: nearley@2.16.0 /Users/yvan/Downloads/LCPwallet/node_modules/nearley
+85 error extraneous: moo@0.4.3 /Users/yvan/Downloads/LCPwallet/node_modules/nearley/node_modules/moo
+85 error extraneous: needle@2.4.0 /Users/yvan/Downloads/LCPwallet/node_modules/needle
+85 error extraneous: debug@3.2.6 /Users/yvan/Downloads/LCPwallet/node_modules/needle/node_modules/debug
+85 error extraneous: node-pre-gyp@0.11.0 /Users/yvan/Downloads/LCPwallet/node_modules/node-pre-gyp
+85 error extraneous: detect-libc@1.0.3 /Users/yvan/Downloads/LCPwallet/node_modules/node-pre-gyp/node_modules/detect-libc
+85 error extraneous: nopt@4.0.1 /Users/yvan/Downloads/LCPwallet/node_modules/node-pre-gyp/node_modules/nopt
+85 error extraneous: tar@4.4.10 /Users/yvan/Downloads/LCPwallet/node_modules/node-pre-gyp/node_modules/tar
+85 error extraneous: node4mailer@4.0.3 /Users/yvan/Downloads/LCPwallet/node_modules/node4mailer
+85 error extraneous: npm-bundled@1.0.6 /Users/yvan/Downloads/LCPwallet/node_modules/npm-bundled
+85 error extraneous: npm-packlist@1.4.4 /Users/yvan/Downloads/LCPwallet/node_modules/npm-packlist
+85 error extraneous: options@0.0.6 /Users/yvan/Downloads/LCPwallet/node_modules/options
+85 error extraneous: railroad-diagrams@1.0.0 /Users/yvan/Downloads/LCPwallet/node_modules/railroad-diagrams
+85 error extraneous: randexp@0.4.6 /Users/yvan/Downloads/LCPwallet/node_modules/randexp
+85 error extraneous: sax@1.2.4 /Users/yvan/Downloads/LCPwallet/node_modules/sax
+85 error extraneous: smart-buffer@1.1.15 /Users/yvan/Downloads/LCPwallet/node_modules/smart-buffer
+85 error extraneous: socks@1.1.10 /Users/yvan/Downloads/LCPwallet/node_modules/socks
+85 error extraneous: sqlite3@4.0.9 /Users/yvan/Downloads/LCPwallet/node_modules/sqlite3
+85 error extraneous: sqlstring@2.3.1 /Users/yvan/Downloads/LCPwallet/node_modules/sqlstring
+85 error extraneous: thirty-two@1.0.2 /Users/yvan/Downloads/LCPwallet/node_modules/thirty-two
+85 error extraneous: ultron@1.0.2 /Users/yvan/Downloads/LCPwallet/node_modules/ultron
+85 error extraneous: ws@1.1.5 /Users/yvan/Downloads/LCPwallet/node_modules/ws
+85 error extraneous: yallist@3.0.3 /Users/yvan/Downloads/LCPwallet/node_modules/yallist
+86 error If you need help, you may report this error at:
+86 error     <https://github.com/npm/npm/issues>
+87 verbose exit [ 1, true ]
