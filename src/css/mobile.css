@@ -149,7 +149,7 @@ _:-ms-fullscreen, :root .main {
   bottom: 0;
   width: 100%;
   z-index: 5;
-  background: #2C3E50;
+  background: #000000;
 }
 
 .second-bottom-bar {
@@ -242,15 +242,16 @@ ul.copayer-list img {
 }
 
 .bottombar-item a {
-  color: #9EA9B3;
+  color: #FEE7B3;
   padding: 0.5rem 0;
   display: block;
   border-top: 3px solid #122232;
 }
 
 .bottombar-item a.active {
-  color: #E4E8EC;
-  background-color: #122232;
+  color: #F802FB;
+  background-color: #000000;
+  opacity:0.9;
 }
 
 .bottombar-item .badge {

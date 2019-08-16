@@ -3,7 +3,8 @@
   src:
     url('../font/icomoon.ttf?ljlgk9') format('truetype'),
     url('../font/icomoon.woff?ljlgk9') format('woff'),
-    url('../font/icomoon.svg?ljlgk9#icomoon') format('svg');
+    url('../font/icomoon.svg?ljlgk9#icomoon') format('svg'),
+    url('../font/icomoon1.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -182,5 +183,9 @@
 }
 .icon-bubble:before {
   content: "\e96b";
+}
+
+.icon-target:before{
+  content: "\e9bc";
 }
 

@@ -33,7 +33,7 @@
   }
 
   .hor-link:nth-child(2) {
-    border-left: 1px solid #E9E9EC;
+    
   }
 </style>
 
@@ -116,8 +116,8 @@
     <div id="walletHome" class="walletHome tab-view tab-in">
       <div style="position:absolute; width: 100%; left: 0px; top: 7px; text-align: center; color: white; z-index: 1"
         ng-if="home.isTestnet">{{home.testnetName}}</div>
-      <div class="oh" style="width:91%;margin: 0 auto; margin-top:27px;padding:0px;border-radius:15px;opacity:0.9">
-        <div class="amount" ng-style="{'background-color':index.backgroundColor}" ng-swipe-right="index.suspendSwipe()">
+      <div class="oh">
+        <div class="amount" style="overflow:visible;background-color:#000000;width:91%;margin: 0 auto; margin-top:27px;padding:0px;border-radius:15px;opacity:0.9;" ng-swipe-right="index.suspendSwipe()">
           <div ng-if="!index.anyOnGoingProcess || 1" style="position: relative;">
             <div ng-show="index.updateError" ng-click='index.openWallet(); index.updateTxHistory()'>
               <span class="size-12 db m10b">{{index.updateError|translate}}</span>
@@ -265,8 +265,8 @@
         <div class="row" style="width:90%;height:344pt; margin-top:20px;border-radius:15px; background-color:#FFFFFF">
           <!-- Address-->
           <div class="large-12 columns">
-            <h2 class="text-left m30t m23l" translate>My LCP address</h2>
-            <span style="position:absolute;right:2px"class="button outline dark-gray tiny"
+            <h2 class="text-left m30t m23l m20b" translate>My LCP address</h2>
+            <span style="position:absolute;right:23px;top:13px"class="button outline dark-gray"
                   ng-click="home.shareAddress(home.addr[index.walletId])">
                   <i class="fi-share"></i>
                  
@@ -301,7 +301,23 @@
                 </div>
               </div>
             </div>
-
+            <div class="m20t text-center m30b">
+                <div class="text-center hor-link" ng-show="!home.generatingAddress && home.addr[index.walletId]"
+                  ng-style="{'max-width' : (index.shared_address ? '100%' : '45%')}">
+                  <button class="m0 radius" style="display:inline;background-color: transparent;border-color: #FEE7B3;color:#B68107;border-radius: 10px"
+                    ng-click="home.openCustomizedAmountModal(index.shared_address || home.addr[index.walletId])"
+                    >
+                    <span translate>Request funds</span>
+                  </button>
+                </div>
+                <div class="text-center hor-link" ng-show="!home.generatingAddress && home.addr[index.walletId]"
+                  ng-if="!index.shared_address">
+                  <button class="m0 radius" ng-click="home.openClaimTextcoinModal(home.addr[index.walletId])"
+                    style="display:inline;background-color: #FEE7B3;color:#B68107;border-radius: 10px">
+                    <span translate>Claim funds</span>
+              </button>
+                </div>
+              </div>
             <div ng-show="home.addr[index.walletId]">
               <div class="m10t text-center" ng-show="index.isCordova">
                 
@@ -309,7 +325,7 @@
               <div class="line-t size-12 text-center">
                 <span ng-if="index.shared_address" translate>This address is shared with
                   {{index.shared_address_cosigners}}.</span>
-                <span ng-if="!index.shared_address" translate>Share this wallet address to receive payments.</span>
+                
                 <span ng-if="!index.shared_address && 0" translate>To protect your privacy, new addresses are generated
                   automatically once you use them.</span>
               </div>
@@ -324,24 +340,9 @@
               Generate new address
             </button>
           </div>
+
         </div>
-        <div class="m20t text-center m30b">
-          <div class="text-center hor-link" ng-show="!home.generatingAddress && home.addr[index.walletId]"
-            ng-style="{'max-width' : (index.shared_address ? '100%' : '45%')}">
-            <a class="size-14"
-              ng-click="home.openCustomizedAmountModal(index.shared_address || home.addr[index.walletId])"
-              ng-style="{'color':index.backgroundColor, 'display': 'inline-block'}">
-              <span translate>Request a specific amount</span>
-            </a>
-          </div>
-          <div class="text-center hor-link" ng-show="!home.generatingAddress && home.addr[index.walletId]"
-            ng-if="!index.shared_address">
-            <a class="size-14" ng-click="home.openClaimTextcoinModal(home.addr[index.walletId])"
-              ng-style="{'color':index.backgroundColor}">
-              <span translate>Claim funds using textcoin</span>
-            </a>
-          </div>
-        </div>
+        
       </div>
     </div> <!-- END Receive -->
 
@@ -408,14 +409,14 @@
                       style="text-transform: none; margin-left: 10px" translate>Send all</a>
                   </label>
                   <div class="input">
-                    <input type="number" id="amount" ng-disabled="home.blockUx || home.lockAmount || home.bSendAll"
+                      <input type="number" id="amount" ng-disabled="home.blockUx || home.lockAmount || home.bSendAll"
                       name="amount"
                       ng-attr-placeholder="{{(home.bSendAll ? (index.arrBalances[index.assetIndex].asset === 'base' ? 'All minus fees' : 'All') : 'Amount')|translate}}"
                       ng-minlength="0.00000001" ng-maxlength="10000000000" ng-model="_amount"
                       valid-amount="{{index.arrBalances[index.assetIndex].asset}}"
                       ng-required="!home.bSendAll && !home.send_multiple" autocomplete="off"
                       ng-focus="home.formFocus('amount')" ng-blur="home.formFocus(false)">
-                    <a class="postfix" ng-click="$root.go('walletHome.preferencesUnit')"
+                    <a   class="postfix" ng-click="$root.go('walletHome.preferencesUnit')"
                       ng-if="index.arrBalances.length > 0 && index.arrBalances[index.assetIndex].asset === 'base'">{{home.unitName}}</a>
                     <a class="postfix" ng-click="$root.go('walletHome.preferencesBbUnit')"
                       ng-if="index.arrBalances.length > 0 && index.arrBalances[index.assetIndex].asset === index.BLACKBYTES_ASSET">{{home.bbUnitName}}</a>
@@ -424,6 +425,7 @@
                     <a class="postfix" ng-click="home.openInExplorer(index.arrBalances[index.assetIndex].asset)"
                       ng-if="index.arrBalances.length > 0 && index.arrBalances[index.assetIndex].asset !== 'base' && index.arrBalances[index.assetIndex].asset !== index.BLACKBYTES_ASSET && !index.arrBalances[index.assetIndex].name">of
                       {{index.arrBalances[index.assetIndex].asset.substr(0,4)}}</a>
+                      
                   </div>
                 </div>
               </div>
@@ -833,7 +835,7 @@
     </div> <!-- END History -->
     <div id="nodes" class="history tab-view">
 
-      <iframe id="nodes_iframe" src="http://lcp.talkingcake.cn/" frameborder="0"
+      <iframe id="nodes_iframe" src="https://herodotus.lovecoinplus.com" frameborder="0"
         style="position: relative; height: 100%; width: 100%;"></iframe>
     </div>
     <div id="{{view.id}}" class="{{view.class}} tab-view" ng-repeat="view in index.addonViews"

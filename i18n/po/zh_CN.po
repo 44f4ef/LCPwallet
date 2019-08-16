@@ -287,8 +287,8 @@ msgid "Byteball &mdash; smart payments"
 msgstr ""
 
 #: public/views/modals/destination-address.html:119
-msgid "Byteball address"
-msgstr "Byteball 地址"
+msgid "My LCP Address"
+msgstr "我的LCP地址"
 
 #: public/views/includes/password.html:24
 msgid "CANCEL"
@@ -941,8 +941,8 @@ msgid "Multidevice Wallet"
 msgstr "多重签名钱包"
 
 #: public/views/walletHome.html:255
-msgid "My Byteball address"
-msgstr "我的Byteball地址"
+msgid "My LCP address"
+msgstr "我的LCP地址"
 
 #: public/views/correspondentDevice.html:297
 msgid "My recording preference"

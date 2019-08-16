@@ -581,11 +581,11 @@ ul.manage li {
 }
 
 .line-t {
-  border-top: 1px solid #E9E9EC;
+  
 }
 
 .line-b {
-  border-bottom: 1px solid #E9E9EC;
+ 
 }
 
 .name-wallet {
@@ -677,7 +677,7 @@ input[type=number]::-webkit-outer-spin-button {
 .label.success {background-color: #1ABC9C;}
 .label.alert {background-color: #ED4A43;}
 .label.gray {background-color: #4B6178;}
-.label.light-gray {background-color: #7A8C9E;;}
+.label.light-gray {background-color: #F802FB;}
 
 .history .label  {
   width: 57px;
@@ -843,7 +843,7 @@ button.outline.dark-gray,
 button.outline.dark-gray:hover,
 button.outline.dark-gray:focus {
   background-color: transparent;
-  border: 1px solid #A5B2BF;
+  
   color: #A5B2BF;
 }
 
@@ -1209,7 +1209,7 @@ input.ng-invalid-match, input.ng-invalid-match:focus {
 }
 
 .mtab-title {
-	color: #A5B7C7;
+	color: #F802FB;
 	border: 1px solid #A5B7C7;
 	border-bottom-color: #8C9EB0;
   	border-width: 1px;
@@ -1226,7 +1226,7 @@ input.ng-invalid-match, input.ng-invalid-match:focus {
 	color: #C7C7C7;
 }
 .mtab-title.active {
-	color: #8C9EB0;
+	color: #F802FB;
 	border-color: #8C9EB0;
 	background-color: #FFF;
 	border-bottom-width: 0px;
@@ -1244,9 +1244,11 @@ input.ng-invalid-match, input.ng-invalid-match:focus {
 }
 
 .tabs dd.active a {
-  background-color: transparent;
+  background-color: #000000;
+  opacity:0.1;
   border: 1px solid #213140;
   border-width: 1px 1px 0 1px;
+  color:#F802FB;
 }
 
 .tabs dd:first-child a {
@@ -1537,7 +1539,7 @@ input.ng-invalid-match, input.ng-invalid-match:focus {
 .amount ul[rn-carousel] {
     margin: 0px;
     width: 100%;
-    height: 130px;
+    height: 180px;
     
 }
 
@@ -1546,6 +1548,7 @@ input.ng-invalid-match, input.ng-invalid-match:focus {
     color: white;
     width: 100%;
     margin-left: 10%;
+    margin-top:20px;
     /*border: 1px solid white;
     border-right: 1px solid white;
     border-left: 1px solid white;*/
