@@ -15,6 +15,11 @@
   </section>
 
   <section class="right-small" ng-show="showCamera">
+      <a ng-click="$root.go('preferences')" class="button outline light-gray tiny preferences-icon m0"
+      ng-if="!index.shared_address">
+      <i class="fi-widget size-13 vm wallet-settings"></i>
+      <span class="show-for-medium-up" translate>Preferences</span>
+    </a>
     <qr-scanner ng-show="index.isComplete" on-scan="topbar.onQrCodeScanned(data)" before-scan="topbar.onBeforeScan()"></qr-scanner>
   </section>
 
