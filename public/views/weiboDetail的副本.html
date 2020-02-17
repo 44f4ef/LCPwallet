@@ -1,0 +1,94 @@
+<style>
+    .wtab-title.active {
+        color: #000;
+        border-bottom: 1px solid #1B1B1B;
+       
+    }
+
+    .wtab {
+        display: none;
+    }
+
+    .wtab.active {
+        display: block;
+        padding-bottom: 30px;
+
+    }
+
+   ul li {
+        list-style: none;
+        padding: 0 !important;
+    }
+</style>
+<div class="weibodetail-container" ng-include="'views/includes/topbar.html'"
+    ng-init="titleSection='Weibo Detail';  closeToHome = true; noColor = true">
+</div>
+
+<div class="weibodetail-content" ng-controller="weiboDetailController as home">
+    <!-- 每条微博内容 -->
+    <div style="border-bottom:1px solid grey;padding: 17px;font-size: 12px;">
+        <div class="weiboname" style="padding-top:5px;">
+            <span>昵称{{data.weiboContent.nickName}}</span>
+          </div>
+        <div style="display: flex;justify-content: space-between;align-items: center;padding-top:5px;">
+            <div style="font-size: 11px;">{{data.weiboContent.toUserAddress}}</div>
+            <time >{{data.weiboContent.createTime | amTimeAgo}}</time>
+        </div>
+        <div style="padding-top:5px;">
+            {{data.weiboContent.content}}
+        </div>
+    </div>
+    <div class="list-main">
+        <div style="border-bottom: 1px solid #1B1B1B ;height:35px;line-height: 35px;">
+            <div style="display: flex;justify-content: flex-start;align-items: center;padding: 0 17px;">
+                <div class="wtab-title active" ng-click="wtab = 1" ng-class="{'active': wtab == 1}">
+                    评论（{{data.weiboContent.comments}})</div>
+                <div class="wtab-title" ng-click="wtab=2" ng-class="{'active': wtab == 2}" style="margin-left:17px;">
+                    点赞（{{data.weiboContent.likenum}}）</div>
+                    <div class="wtab-title" ng-click="wtab=3" ng-class="{'active': wtab == 3}" style="margin-left:17px;">
+                    踩 ({{data.weiboContent.unlikeNums}}）</div>
+            </div>
+        </div>
+        <div class="wtab " ng-class="{'active': wtab == 1}" ng-init="wtab = 1" style="padding:0 17px;font-size:12px;">
+            <div  ng-if="data.allComments.length>0">
+                <div ng-repeat="k in data.allComments" style="border-bottom:1px solid #eee;">
+                    <div style="display: flex;justify-content: space-between;align-items: center;margin-top:8px;">
+                        <div style="font-size: 11px;">{{k.fromUserAddress}}</div>
+                        <time>{{k.createTime | amTimeAgo}}</time>
+                    </div>
+                    <div style="margin-top: 8px;margin-bottom:3px ">
+                        {{k.commentsContent}}
+                    </div>
+                </div>
+            </div>
+            <div ng-if="data.allComments.length==0" style="margin-top:8px;">暂无评论</div>
+        </div>
+        <div class="wtab" ng-class="{'active': wtab == 2}" style="padding-right:17px;font-size: 12px;">
+            <div ng-if="data.allLike.length>0">
+            <ul >
+                <li ng-repeat="item in data.allLike"
+                    style="display: flex;justify-content: space-between;align-items: center;height:40px;line-height:40px;">
+                    <div style="font-size: 11px;">{{item.fromUserAddress}}</div>
+                    <time style="font-size: 12px;">{{item.createTime | amTimeAgo}}</time>
+                </li>
+            </ul>
+        </div>
+        <div ng-if="data.allLike.length==0" style="padding-left:17px;margin-top:8px">暂无点赞</div>
+        </div>
+        <!--  cai-->
+        <div class="wtab" ng-class="{'active': wtab == 3}" style="padding-right:17px;font-size: 12px;">
+            <div ng-if="data.allUnLike.length>0">
+            <ul >
+                <li ng-repeat="k in data.allUnLike"
+                    style="display: flex;justify-content: space-between;align-items: center;height:40px;line-height:40px;">
+                    <div style="font-size: 11px;">{{k.fromUserAddress}}</div>
+                    <time style="font-size: 12px;">{{k.createTime | amTimeAgo}}</time>
+                </li>
+            </ul>
+        </div>
+        <div ng-if="data.allUnLike.length==0" style="padding-left:17px;margin-top:8px">暂无</div>
+        </div>
+    </div>
+
+   
+</div>

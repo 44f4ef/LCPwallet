@@ -1,12 +1,11 @@
 {
-  "name": "LCP-Mobile",
+  "name": "LCP Mobile",
   "description": "A better LC",
   "author": "LCP",
   "version": "1.0.2",
   "keywords": [
     "wallet",
     "obyte",
-    "byteball",
     "DAG",
     "decentralized",
     "multisignature",

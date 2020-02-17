@@ -1088,7 +1088,7 @@ msgstr ""
 
 #: public/views/modals/customized-amount.html:8
 #: public/views/walletHome.html:297
-msgid "Request a specific amount"
+msgid "Request funds"
 msgstr ""
 
 #: public/views/correspondentDevice.html:336

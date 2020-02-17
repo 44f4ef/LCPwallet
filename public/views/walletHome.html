@@ -26,19 +26,135 @@
   }
 
   .hor-link {
-    max-width: 45%;
+    max-width: 75%;
     display: inline-block;
-    padding: 0 30px;
+    padding: 0 10px;
     line-height: 1em;
+    font-size:10px
   }
 
   .hor-link:nth-child(2) {
     
   }
+
+  .wtab-title.active{
+     color:#000;
+      border-bottom:1px solid #1B1B1B;
+  }
+
+  .wtab{
+      display: none;
+  }
+  .wtab.active{
+      display: block;
+  }
+  .flexbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    min-height: 50px;
+    
+  }
+  /* .flex-item{
+    flex: auto;
+   
+
+  } */
+  .clearfix:after{
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+
+  }
+  .clearfix{
+    zoom: 1;
+  }
+  
+  .card{
+    /* background-color: pink; */
+    width:100%;
+    /* height: 270px; */
+    position: fixed;
+    left:0;
+    top: 0;
+    z-index:999;
+  }
+  .blackbox{
+    /* width:91%;
+    margin: 0 auto;
+    height: 270px;
+    position: fixed;
+    top:27px;
+    z-index:999; */
+    margin-top: 45px;
+
+  }
+ 
+.searchbox{
+    height: 50px;
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+   
+   
+}
+
+
+
+.searchbox .input{
+   width:87%;
+   height: 35px;
+   line-height: 35px;
+   padding: 0 !important;
+   margin: 0 !important;
+   border-bottom:none !important;
+   border-radius: 12px;
+   background-color:#fff;
+   padding-left:10px !important;
+}
+.searchbox .input[type=text]:focus{
+   background-color:#fff ;
+   border: 1px solid red !important ; 
+   /* outline: 1px solid #AFECAB; */
+  }
+
+  .pos_x{
+    position: absolute;
+    /* top:0; */
+    top:18px;
+    right: 60px;
+    width:16px;
+    height: 16px;
+    line-height: 50px;
+    text-align: center;
+    background: url('img/search.png') no-repeat;
+   
+    
+  }
+ 
+ .com_det{
+  width:91%;
+  margin:0 auto;
+  /* margin-top:8px;  */
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  height:35px;
+  line-height:35x;
+  font-size:12px;
+  border-top:1px solid #F2F3F5;
+ }
+
+
 </style>
 
 
-<div class="topbar-container" ng-include="'views/includes/topbar.html'" ng-init="showCamera = true">
+<div class="topbar-container" id="tobars" ng-include="'views/includes/topbar.html'" ng-init="showCamera = true">
 </div>
 
 <div ng-controller="walletHomeController as home">
@@ -105,25 +221,21 @@
     </div>
   </div>
 
-  <div class="oh" ng-show="!index.noFocusedWallet">
-
+  <div class="oh" ng-show="!index.noFocusedWallet" >
     <!--
-
     WalletHome
-
     -->
-
-    <div id="walletHome" class="walletHome tab-view tab-in">
+   
+    <div id="walletHome" class="walletHome tab-view tab-in" style="background-color:#F2F3F5;">
       <div style="position:absolute; width: 100%; left: 0px; top: 7px; text-align: center; color: white; z-index: 1"
         ng-if="home.isTestnet">{{home.testnetName}}</div>
-      <div class="oh">
-        <div class="amount" style="overflow:visible;background-color:#000000;width:91%;margin: 0 auto; margin-top:27px;padding:0px;border-radius:15px;opacity:0.9;" ng-swipe-right="index.suspendSwipe()">
+      <div class="oh" id="card" style="background-color: #F2F3F5;height: 270px;" >
+        <div class="amount" id="blackbox"  style="overflow:visible;background-color:#000000;width:91%;margin: 0 auto; margin-top:27px;padding:0px;border-radius:15px;" ng-swipe-right="index.suspendSwipe()">
           <div ng-if="!index.anyOnGoingProcess || 1" style="position: relative;">
             <div ng-show="index.updateError" ng-click='index.openWallet(); index.updateTxHistory()'>
               <span class="size-12 db m10b">{{index.updateError|translate}}</span>
               <button class="outline white tiny round" translate>Tap to retry</button>
             </div>
-
             <div ng-show="index.walletScanStatus == 'error'" ng-click='index.retryScan()'>
               <span translate>Scan status finished with error</span>
               <br><span translate>Tap to retry</span>
@@ -166,13 +278,13 @@
                 <style>
                   .rn-carousel-control.rn-carousel-control-next,
                   .rn-carousel-control.rn-carousel-control-prev {
-                    background-color: {
+                    /* background-color: {
                         {
                         index.backgroundColor
                       }
                     }
 
-                    ;
+                    ; */
                   }
 
                   .secondrow {
@@ -192,15 +304,14 @@
             </ul>
             <div rn-carousel-indicators ng-if="index.arrBalances.length > 1" slides="index.arrBalances"
               rn-carousel-index="index.assetIndex"></div>
-          </div>
-
+          </div> 
           <div ng-if="index.anyOnGoingProcess && 0">
             <div class="size-36">
               <strong>...</strong>
             </div>
           </div>
-        </div> <!-- amount -->
-
+        </div>
+         <!-- amount -->
         <div class="pr columns line-b">
          
           <div class="right">
@@ -219,8 +330,186 @@
           </div>
         </div>
       </div> <!-- oh -->
+    
+      <div class="all" id="all">
+        <!-- <div style="padding: 12px;"> -->
+      <div style="width:91%;margin:0 auto;padding: 12px 0;">
+        <h5 style="font-size:18px;font-weight:500;">Love on the chain</h5>    
+        <div class="searchbox">
+         
+          <input  class="input" type="text" placeholder="Search"  ng-model="keyword" ng-model-options="{ debounce: 1000 }" ng-change="changeword(keyword)"  >
+          <!-- <span class="pos_x" ng-click="clearlword()">x</span> -->
+          <span class="pos_x" ng-click="searchword()"></span>
 
+          <span  ng-click="initcancel()">cancel</span>
+         
+        </div>
 
+        <div style="display: flex;justify-content: space-between;align-items: center;" ng-if="flag">
+          <div style="display: flex;justify-content: space-between;align-items: center;width: 150px;color:#666;font-size:16px">
+            <div  id="hot" class="wtab-title active" ng-click="changetab(1)" ng-class="{'active': wtab == 1}">new</div>
+            <div class="wtab-title" ng-click="changetab(2)" ng-class="{'active': wtab == 2}" >week</div>
+            <div class="wtab-title" ng-click="changetab(3)" ng-class="{'active': wtab == 3}" >month</div>
+          </div>
+          <div>
+            <div style="color: #666;" ng-click="$root.go('myblog')">my</div>
+          </div>
+        </div>
+       
+      </div>
+        
+     <!-- 搜索结果 -->
+     <div  ng-if="!flag">
+      <!-- 每条微博内容 -->
+   <div ng-if="resultdata.length>0"  > 
+     <div style="font-size:12px;margin-bottom: 8px;background-color: #fff;" ng-repeat="key in resultdata" >
+     <div  style="width:91%;margin:0 auto;">
+       <div class="weiboname" style="padding:5px 0px;">
+        <span style="font-weight: bold;">
+          {{key.nickName}}
+        </span>: <span>
+          <!-- {{key.content}} -->
+          <span ng-if="key.isDisplay==1">{{key.content}}</span>
+          <span ng-if="key.isDisplay==0">该内容被淹没了......</span>
+        </span>
+       </div>
+       <!-- <div  style="display:flex;justify-content: space-between;align-items: center;padding-top:5px;"  > -->
+         <!-- <div style="font-size: 11px;" >{{key.weiboId}}</div> -->
+         <!-- <time >{{key.createTime | amTimeAgo}}</time>  -->
+       <!-- </div> -->
+       <!-- <div style="padding-top:5px;" >
+        内容: {{key.content}}
+       </div> -->
+     </div>
+       <div  class="com_det" >
+        <div  ng-if="key.isDisplay==0" ng-click="swallow()">详情</div>
+         <div ng-if="key.isDisplay==1" ng-click="gotodetail(key.weiboId)">详情</div>
+         <div ng-click="gotomicroblog('comment',key.weiboId)">评论 {{key.comments}}</div>
+         <div ng-click="gotomicroblog('dislike',key.weiboId)">👎{{key.unlikeNums}}</div>
+         <div ng-click="gotomicroblog('like',key.weiboId)">👍{{key.likenum}}</div>
+       </div>
+     </div>  
+   </div>
+   <div ng-if="resultdata.length==0"  >
+      <div style="width:91%;margin:0 auto;padding-top:5px;">暂无搜索结果</div>  
+  </div>
+    </div>
+   
+        <!-- new -->
+      <div class="wtab" ng-if="flag" ng-class="{'active': wtab == 1}"   >
+        <!-- 123 -->
+           <!-- 每条微博内容 -->
+        <div ng-if="newdata.length>0"  > 
+          <div style="font-size:12px;margin-bottom: 8px;background-color: #fff;" ng-repeat="key in newdata" >
+          <div  style="width:91%;margin:0 auto;">
+            <div class="weiboname" style="padding:5px 0px;">
+             <span style="font-weight: bold;">
+              {{key.nickName}}
+            </span>: <span>
+              <span ng-if="key.isDisplay==1">{{key.content}}</span>
+              <span ng-if="key.isDisplay==0">该内容被淹没了......</span>
+            </span>
+            </div>
+            <!-- <div  style="display:flex;justify-content: space-between;align-items: center;padding-top:5px;"  > -->
+              <!-- <div style="font-size: 11px;" ng-click="copyWeiboid(key.weiboId)">微博ID{{key.weiboId}}</div> -->
+              <!-- <time >{{key.createTime | amTimeAgo}}</time>  -->
+            <!-- </div> -->
+            <!-- <div style="padding-top:5px;" >
+             内容: {{key.content}}
+            </div> -->
+          </div>
+            <div   class="com_det">
+              <!-- <div ng-click="unkown()">123上链详情</div> -->
+              <div  ng-if="key.isDisplay==0" ng-click="swallow()">详情</div>
+              <div  ng-if="key.isDisplay==1" ng-click="gotodetail(key.weiboId)">详情</div>
+              <div ng-click="gotomicroblog('comment',key.weiboId)">评论 {{key.comments}}</div>
+              <div ng-click="gotomicroblog('dislike',key.weiboId)">👎{{key.unlikeNums}}</div>
+              <div ng-click="gotomicroblog('like',key.weiboId)">👍{{key.likenum}}</div>
+            </div>
+           
+          </div>
+        </div>
+        <div ng-if="newdata.length==0">
+          <div style="width:91%;margin:0 auto;padding-top:5px;">暂无最新数据</div> 
+        </div>
+      </div>
+
+       <!-- week -->
+       <div class="wtab"  ng-if="flag" ng-class="{'active': wtab == 2}">
+         <!-- 456 -->
+        <div ng-if="weekdata.length>0" >
+      <div  style="font-size:12px;margin-bottom: 8px;background-color: #fff;" ng-repeat="k in weekdata">
+        <div  style="width:91%;margin:0 auto;">
+          <div class="weiboname" style="padding:5px 0px;">
+            <span style="font-weight: bold;">
+              {{k.nickName}}
+            </span>: <span>
+              <!-- {{k.content}} -->
+              <span ng-if="k.isDisplay==1">{{k.content}}</span>
+              <span ng-if="k.isDisplay==0">该内容被淹没了......</span>
+            </span>
+          </div>
+          <!-- <div style="display: flex;justify-content: space-between;align-items: center;padding-top:5px;"> -->
+            <!-- <div style="font-size:11px;" ng-click="copyWeiboid(k.weiboId)">{{k.weiboId}}</div> -->
+            <!-- <time >{{k.createTime | amTimeAgo}}</time> -->
+          <!-- </div> -->
+          <!-- <div style="padding-top:5px"  >
+            内容: {{k.content}}
+          </div> -->
+        </div>
+          <div  class="com_det" >
+            <!-- <div ng-click="unkown()">456上链详情</div> -->
+            <div  ng-if="k.isDisplay==0" ng-click="swallow()">详情</div>
+            <div ng-if="k.isDisplay==1" ng-click="gotodetail(k.weiboId)">详情</div>
+            <div ng-click="gotomicroblog('comment',k.weiboId)">评论 {{k.comments}}</div>
+            <div ng-click="gotomicroblog('comment',k.weiboId)">👎{{k.unlikeNums}}</div>
+            <div ng-click="gotomicroblog('like',k.weiboId)">👍{{k.likenum}}</div>
+          </div>
+        </div>
+        </div>
+        <div ng-if="weekdata.length ==0" >
+          <div style="width:91%;margin:0 auto;padding-top:5px;">暂无周数据</div> 
+        </div>
+      </div>
+
+       <!-- month  -->
+      <div class="wtab"  ng-if="flag" ng-class="{'active': wtab == 3}">
+        <!-- 789 -->
+      <div ng-if="monthdata.length>0" >
+    <div  style="font-size:12px;margin-bottom: 8px;background-color: #fff;" ng-repeat="item in monthdata">
+      <div style="width:91%;margin:0 auto;">
+        <div class="weiboname" style="padding:5px 0px;">
+          <span style="font-weight: bold;">
+            {{item.nickName}}
+          </span>: <span>
+            <!-- {{item.content}} -->
+            <span ng-if="item.isDisplay==1">{{item.content}}</span>
+            <span ng-if="item.isDisplay==0">该内容被淹没了......</span>
+          </span>
+        </div>
+        <!-- <div style="display: flex;justify-content: space-between;align-items: center;padding-top:5px;"> -->
+          <!-- <div style="font-size:11px;" ng-click="copyWeiboid(item.weiboId)">{{item.weiboId}}</div> -->
+          <!-- <time >{{item.createTime | amTimeAgo}}</time> -->
+        <!-- </div> -->
+        <!-- <div style="padding-top:5px"  >
+          内容: {{item.content}}
+        </div> -->
+      </div>
+        <div  class="com_det">
+          <!-- <div ng-click="unkown()">789上链详情</div> -->
+          <div  ng-if="item.isDisplay==0" ng-click="swallow()">详情</div>
+          <div ng-if="item.isDisplay==1" ng-click="gotodetail(item.weiboId)">详情</div>
+          <div ng-click="gotomicroblog('comment',item.weiboId)">评论 {{item.comments}}</div>
+          <div ng-click="gotomicroblog('comment',item.weiboId)">👎{{item.unlikeNums}}</div>
+          <div ng-click="gotomicroblog('like',item.weiboId)">👍{{item.likenum}}</div>
+        </div>
+      </div>
+       </div>
+      <div ng-if="monthdata.length ==0">
+        <div style="width:91%;margin:0 auto;padding-top:5px;">暂无月数据</div> 
+      </div>
+      </div>
+      </div>
 
       <div ng-if="index.txps[0]">
         <h4 ng-show="index.requiresMultipleSignatures" class="title m0" translate>Payment Proposals</h4>
@@ -234,13 +523,15 @@
         </div>
       </div>
       <div class="extra-margin-bottom"></div>
-    </div> <!-- END WalletHome -->
+    </div> 
 
-    <!--
-
-    receive
-
-    -->
+    <!-- fixed box -->
+    <div style="position:relative;"  ng-click="gotomicroblog('weibo')"> 
+      <span style="position: fixed;right:40px;bottom:110px;width:50px;height: 50px;line-height:50px;text-align:center;background:#EEEDED; border-radius: 50%;">+</span>
+    </div>
+   
+    <!-- END WalletHome -->
+    <!--receive-->
     <div id="receive" class="receive tab-view" style="padding-bottom: 0px; background-color:#F2F3F5;">
 
       <div ng-show="index.needsBackup" class="p60t row text-center">
@@ -269,7 +560,6 @@
             <span style="position:absolute;right:23px;top:13px"class="button outline dark-gray"
                   ng-click="home.shareAddress(home.addr[index.walletId])">
                   <i class="fi-share"></i>
-                 
                 </span>
             <div>
               <div class="box-notification" ng-show="home.addrError">
@@ -295,26 +585,28 @@
                 </div>
                 <div class="m10t">
                   <h4 ng-class="{'enable_text_select': !index.isCordova}" class="size-12">
-                    {{index.shared_address || (home.generatingAddress ? '...' : home.addr[index.walletId])}}
-
+                   地址： {{index.shared_address || (home.generatingAddress ? '...' : home.addr[index.walletId])}}
+                   <!-- ascs:{{home.addr}} -->
+       
+                   
                   </h4>
                 </div>
               </div>
             </div>
-            <div class="m20t text-center m30b">
+            <div class="m20t text-center m30b size-12">
                 <div class="text-center hor-link" ng-show="!home.generatingAddress && home.addr[index.walletId]"
                   ng-style="{'max-width' : (index.shared_address ? '100%' : '45%')}">
                   <button class="m0 radius" style="display:inline;background-color: transparent;border-color: #FEE7B3;color:#B68107;border-radius: 10px"
                     ng-click="home.openCustomizedAmountModal(index.shared_address || home.addr[index.walletId])"
                     >
-                    <span translate>Request funds</span>
+                    <span translate style="font-size:small;">Request funds</span>
                   </button>
                 </div>
                 <div class="text-center hor-link" ng-show="!home.generatingAddress && home.addr[index.walletId]"
                   ng-if="!index.shared_address">
                   <button class="m0 radius" ng-click="home.openClaimTextcoinModal(home.addr[index.walletId])"
                     style="display:inline;background-color: #FEE7B3;color:#B68107;border-radius: 10px">
-                    <span translate>Claim funds</span>
+                    <span translate style="font-size:small;">Claim funds</span>
               </button>
                 </div>
               </div>
@@ -352,24 +644,26 @@
     send
 
     -->
-    <div id="send" class="send tab-view" ng-init="assetIndexSelectorValue=0;home.shownForm='payment'">
+    <div id="send" class="send tab-view" ng-init="assetIndexSelectorValue=0;home.shownForm='payment'" style="background-color:#F2F3F5;">
       <div>
         <h4 class="title m0">
 
           <a class="right lh" ng-if="index.availableBalanceBytes > 0 && !home.blockUx && !home.lockAmount"
             ng-click="home.sendAll(index.availableMaxBalance, 0)" translate> Send All
           </a>
-
+         <!-- <span translate>send message</span>: -->
           <!--available-balance></available-balance-->
           <div class="size-10">
-            <span class="db text-bold">
+            <span class="text-bold" style="display:inline-block">
               <span translate>What to send</span>:
+            
             </span>
-            <select class="m10t" ng-model="assetIndexSelectorValue" ng-disabled="home.blockUx || home.lockAsset"
+            <select style="position:inline-block;width:250px;margin-left:20px"class="m10t" ng-model="assetIndexSelectorValue" ng-disabled="home.blockUx || home.lockAsset"
               ng-change="home.switchForms()">
               <option ng-repeat="balance in index.arrBalances" ng-value="index.arrBalances.indexOf(balance)">
                 {{(balance.asset === 'base' ? 'LCP' : (balance.asset == index.BLACKBYTES_ASSET ? 'Blackbytes' : (balance.name || balance.asset))) + ' (' + (balance.stableStr ? balance.stableStr : (balance.stable.toLocaleString())) + (balance.pending ? ' ' + ('confirmed' | translate) : ' ' + ('available' | translate) ) + ')'}}
               </option>
+             
               <option ng-value="-1" translate>Data into datafeed</option>
               <option ng-value="-2" translate>Attestation</option>
               <option ng-value="-3" translate>Profile</option>
@@ -379,7 +673,7 @@
           </div>
         </h4>
       </div>
-      <div class="row m20t" ng-show="home.shownForm=='payment'">
+      <div class="row m20t" ng-show="home.shownForm=='payment'" style="width:90%; border-radius:15px;">
         <div class="large-12 large-centered columns">
           <form name="sendPaymentForm" ng-submit="home.submitPayment()"
             ng-disabled="home.blockUx || home.onGoingProcess" novalidate>
@@ -390,7 +684,7 @@
               <a class="close-notification text-warning">&#215;</a>
             </div>
 
-            <div class="row" ng-hide="home.hideAmount">
+            <div class="row" ng-hide="home.hideAmount" >
               <div class="large-12 medium-12 columns">
                 <div class="right" ng-hide="sendPaymentForm.amount.$pristine && !sendPaymentForm.amount.$modelValue ">
                   <span class="has-error right size-12" ng-if="sendPaymentForm.amount.$invalid">
@@ -835,13 +1129,12 @@
     </div> <!-- END History -->
     <div id="nodes" class="history tab-view">
 
-      <iframe id="nodes_iframe" src="https://herodotus.lovecoinplus.com" frameborder="0"
+      <iframe id="nodes_iframe" src="https://lovecoin.plus" frameborder="0"
         style="position: relative; height: 100%; width: 100%;"></iframe>
     </div>
     <div id="{{view.id}}" class="{{view.class}} tab-view" ng-repeat="view in index.addonViews"
       ng-include="view.template">
     </div>
-
   </div>
 </div>
 <div class="extra-margin-bottom"></div>

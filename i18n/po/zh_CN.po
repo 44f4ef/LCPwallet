@@ -766,6 +766,9 @@ msgstr "隐藏钱包种子"
 msgid "History"
 msgstr "历史记录"
 
+msgid "Nodes"
+msgstr "节点"
+
 #: src/js/controllers/index.js:665
 msgid "Home"
 msgstr "首页"
@@ -1248,7 +1251,7 @@ msgstr "密码保护"
 
 #: public/views/modals/customized-amount.html:8
 #: public/views/walletHome.html:312
-msgid "Request a specific amount"
+msgid "Request funds"
 msgstr "要求特定金额"
 
 #: public/views/correspondentDevice.html:336
@@ -1808,6 +1811,12 @@ msgstr "注意！"
 #: public/views/modals/tx-details.html:129
 msgid "Was claimed?"
 msgstr "已领取？"
+
+
+
+#: public/views/walletHome.html:343
+msgid "send message"
+msgstr "想要发送的内容"
 
 #: public/views/walletHome.html:343
 msgid "What to send"

@@ -1,5 +1,6 @@
 <nav ng-controller="topbarController as topbar" class="tab-bar">
   <section class="left-small">
+    
     <a id="hamburger" class="p10" ng-show="!goBackToState && !closeToHome  && !index.noFocusedWallet"
       ng-click="index.openMenu()"><i class="fi-list size-24"></i>
     </a>
@@ -15,6 +16,7 @@
   </section>
 
   <section class="right-small" ng-show="showCamera">
+    
       <a ng-click="$root.go('preferences')" class="button outline light-gray tiny preferences-icon m0"
       ng-if="!index.shared_address">
       <i class="fi-widget size-13 vm wallet-settings"></i>
@@ -24,6 +26,7 @@
   </section>
 
   <section class="middle tab-bar-section">
+  
     <h1 class="title ellipsis" ng-style="{'color': noColor ? '#4A90E2' : index.backgroundColor, 'max-width': '100%'}">
 		<span ng-if="index.arrBalances[index.assetIndex].shared === undefined && !index.shared_address || titleSection">{{(titleSection|translate) || (index.shared_address || index.alias || index.walletName)}}</span>
 		<span ng-if="(index.arrBalances[index.assetIndex].shared !== undefined || index.shared_address) && !titleSection">

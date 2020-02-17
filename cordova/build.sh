@@ -69,6 +69,7 @@ if [ ! -d $PROJECT ]; then
 
 	if [ $CURRENT_OS == "IOS" ]; then
 		echo "${OpenColor}${Green}* Adding IOS platform... ${CloseColor}"
+		cordova platform rm ios
 		cordova platforms add ios
 		checkOK
 	fi
@@ -176,12 +177,12 @@ fi
 
 if $DBGJS
 then
-	echo "${OpenColor}${Green}* Generating obyte bundle (debug js)...${CloseColor}"
+	echo "${OpenColor}${Green}* Generating LCP bundle (debug js)...${CloseColor}"
 	cd $BUILDDIR/..
 	grunt cordova
 	checkOK
 else
-	echo "${OpenColor}${Green}* Generating obyte bundle...${CloseColor}"
+	echo "${OpenColor}${Green}* Generating LCP bundle...${CloseColor}"
 	cd $BUILDDIR/..
 	grunt cordova-prod
 	checkOK

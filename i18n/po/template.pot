@@ -1267,7 +1267,7 @@ msgstr ""
 
 #: public/views/modals/customized-amount.html:8
 #: public/views/walletHome.html:312
-msgid "Request a specific amount"
+msgid "Request funds"
 msgstr ""
 
 #: public/views/correspondentDevice.html:336
@@ -1819,6 +1819,10 @@ msgstr ""
 
 #: public/views/modals/tx-details.html:129
 msgid "Was claimed?"
+msgstr ""
+
+#: public/views/walletHome.html:450
+msgid "send message"
 msgstr ""
 
 #: public/views/walletHome.html:343

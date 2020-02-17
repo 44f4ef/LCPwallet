@@ -63,3 +63,4 @@ android-debug-fast:
 #	cp ./etc/beep.ogg ./cordova/project/plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/raw/beep.ogg
 	cd ../obytebuilds/project-ANDROID && cordova run android 
 #	cd ../obytebuilds/project-ANDROID && cordova build android
+

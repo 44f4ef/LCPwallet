@@ -1249,7 +1249,7 @@ msgstr "비밀번호 요청"
 
 #: public/views/modals/customized-amount.html:8
 #: public/views/walletHome.html:312
-msgid "Request a specific amount"
+msgid "Request funds"
 msgstr "특정한 양 요청"
 
 #: public/views/correspondentDevice.html:336

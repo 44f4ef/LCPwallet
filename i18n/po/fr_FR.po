@@ -1248,7 +1248,7 @@ msgstr "Demander un mot de passe"
 
 #: public/views/modals/customized-amount.html:8
 #: public/views/walletHome.html:312
-msgid "Request a specific amount"
+msgid "Request funds"
 msgstr "Demander un montant précis"
 
 #: public/views/correspondentDevice.html:336

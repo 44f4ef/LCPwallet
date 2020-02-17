@@ -52,6 +52,10 @@ All app bundles will be placed at `../obytebuilds` dir, so create it first: `mkd
 
   and extract to android_sdk_folder/ (should replace ./tools folder).
 
+ 
+  Run `make android-debug` for the first tinme
+  Run `make android-debug-fast`  for any time after that
+
 ### iOS
 
 - Install Xcode 7 (or newer)
@@ -61,6 +65,9 @@ All app bundles will be placed at `../obytebuilds` dir, so create it first: `mkd
   * In case of `DeviceSupport` missing error, run `cd /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/ && sudo ln -s 10.3.1\ \(14E8301\)/ 10.3`
   * If you encounter 'bitcore' not found after app launch, install it also `npm install bitcore-lib` and remove `../bytebalbuilds/project-IOS` folder completely, then rerun make again.
   * On code signing error, open Xcode project `../obytebuilds/project-IOS/platforms/ios/Byteball.xcodeproj` in Xcode, open project properties, select Byteball target and set your AppleID account as a team. Xcode may also ask you to change bundle identifier to be unique, just append any random string to 'org.byteball.wallet' bundle identifier.
+
+  Run `make ios-debug` for the first tinme
+  Run `make ios-debug-fast`  for any time after that
 
 ### macOS
 

@@ -1,0 +1,139 @@
+<style>
+    .wtab-title.active {
+        color: #000;
+        /* border-bottom: 1px solid #1B1B1B; */
+       
+    }
+
+    .wtab {
+        display: none;
+    }
+
+    .wtab.active {
+        display: block;
+        padding-bottom: 30px;
+
+    }
+
+   ul li {
+        list-style: none;
+        padding: 0 !important;
+    }
+</style>
+<div class="weibodetail-container" ng-include="'views/includes/topbar.html'"
+    ng-init="titleSection='Detail';  closeToHome = true; noColor = true">
+</div>
+
+<div class="weibodetail-content" ng-controller="weiboDetailController as home" style="background-color: #F2F3F5;">
+    <div style="width:100%;background-color: #F2F3F5;margin-bottom: 8px;padding:10px 0">
+    <!-- 每条微博内容 -->
+    <div style="font-size: 12px;width:91%;margin: 0 auto;">
+        <div class="weiboname" style="padding-top:8px;">
+            <span style="font-weight: bold;">{{data.weiboContent.nickName}}</span>: <span>{{data.weiboContent.content}}</span>
+          </div>
+          <!-- <div style="padding-top:5px;font-size: 12px;">
+            内容: {{data.weiboContent.content}}
+        </div> -->
+        <div style="display: flex;justify-content: space-between;align-items: center;padding-top:8px;">
+            <time >上链时间: {{data.weiboContent.createTime | amTimeAgo}}</time>
+            <div style="font-size: 11px;" >链上序号: {{data.weiboContent.weiboId}}</div>
+            <div ng-click="copyWeiboid(data.weiboContent.weiboId)">复制序号</div>
+        </div>
+        <div style="padding-top:8px;">
+            来源地址：{{data.weiboContent.toUserAddress}}
+        </div>
+       
+    </div>
+   </div>
+
+    <div class="list-main" style="width: 100%;">
+        <div style="background-color:#fff;height:35px;line-height: 35px;border-bottom:1px solid #F2F3F5">
+            <div style="font-size:14px; display: flex;justify-content:space-between;align-items: center;width:91%;margin:0 auto">
+                <!-- <div class="wtab-title active" ng-click="wtab = 1" ng-class="{'active': wtab == 1}" >
+                    comment ({{data.weiboContent.comments}})
+                </div>
+                <div class="wtab-title" ng-click="wtab=2" ng-class="{'active': wtab == 2}" >
+                    This is good content ({{data.weiboContent.likenum}})
+                </div>
+                <div class="wtab-title" ng-click="wtab=3" ng-class="{'active': wtab == 3}" >
+                    This is bad content ({{data.weiboContent.unlikeNums}})
+                </div> -->
+
+                <div class="wtab-title active" ng-click="gotomicroblog('comment',data.weiboContent.weiboId)" >
+                    Comments ({{data.weiboContent.comments}})
+                </div>
+                <div class="wtab-title" ng-click="gotomicroblog('like',data.weiboContent.weiboId)" >
+                    Good Content ({{data.weiboContent.likenum}})
+                </div>
+                <div class="wtab-title"  ng-click="gotomicroblog('dislike',data.weiboContent.weiboId)">
+                    Bad Content ({{data.weiboContent.unlikeNums}})
+                </div>
+
+
+            </div>
+        </div>
+        <div class="wtab" style="padding:0 !important" ng-class="{'active': wtab == 1}" ng-init="wtab = 1" style="font-size:12px;">
+            
+                <div  ng-if="commemtlist.length>0" >
+                <div ng-repeat="k in commemtlist" style="margin-bottom:10px;background-color: #fff;">
+                    <div style="border-bottom: 1px solid #EEEDED;width:91%;margin:0 auto;">
+                   
+                    <div class="weiboname" style="padding-top:5px;font-size: 12px;">
+                       <span>{{k.nickName}}</span>: <span>{{k.commentsContent}}</span>
+                      </div>
+                    <!--  -->
+                    <div style="display: flex;justify-content: space-between;align-items: center;padding-top:5px;font-size: 11px;">
+                        <!-- <div style="font-size: 11px;" ng-click="copyWeiboid(k.weiboId)">微博ID:{{k.weiboId}}</div> -->
+                        <time>{{k.createTime | amTimeAgo}}</time>
+                        <!-- <div ng-click="copyWeiboid(k.weiboId)">复制</div> -->
+                    </div>
+                    <!-- <div class="weiboname" style="padding-top:5px;font-size: 12px;">
+                         <span>{{k.nickName}}</span>: <span>{{k.commentsContent}}</span>
+                       </div> -->
+
+                    <!-- <div style="font-size:12px;padding-top: 5px;margin-bottom:3px;">
+                       内容: {{k.commentsContent}}
+                    </div> -->
+                </div>
+                  
+                <div style="display: flex;justify-content:space-around;align-items: center;height:35px;line-height:35x;font-size:12px">
+                    <div ng-click="gotomicroblog('reply',k.weiboId,k.commentsId)">回复 </div>
+                    <div ng-click="gotomore(k.commentsId)">更多回复</div>
+                  </div>
+                </div> 
+              
+            </div>
+            <div ng-if="commemtlist.length==0" style="background-color:#fff;">
+                <div style="width:91%;margin:0 auto;padding-top:5px;font-size: 12px;">暂无回复</div>
+                
+            </div>
+        </div>
+        <!-- <div class="wtab" ng-class="{'active': wtab == 2}" style="font-size: 12px;">
+            <div ng-if="data.allLike.length>0">
+            <ul >
+                <li ng-repeat="item in data.allLike"
+                    style="display: flex;justify-content: space-between;align-items: center;height:40px;line-height:40px;">
+                    <div style="font-size: 11px;">{{item.fromUserAddress}}</div>
+                    <time style="font-size: 12px;">{{item.createTime | amTimeAgo}}</time>
+                </li>
+            </ul>
+        </div>
+        <div ng-if="data.allLike.length==0" style="padding-left:17px;margin-top:8px">暂无点赞</div>
+        </div> -->
+        <!--  cai-->
+        <!-- <div class="wtab" ng-class="{'active': wtab == 3}" style="font-size: 12px;">
+            <div ng-if="data.allUnLike.length>0">
+            <ul >
+                <li ng-repeat="k in data.allUnLike"
+                    style="display: flex;justify-content: space-between;align-items: center;height:40px;line-height:40px;">
+                    <div style="font-size: 11px;">{{k.fromUserAddress}}</div>
+                    <time style="font-size: 12px;">{{k.createTime | amTimeAgo}}</time>
+                </li>
+            </ul>
+        </div>
+        <div ng-if="data.allUnLike.length==0" style="padding-left:17px;margin-top:8px">暂无</div>
+        </div> -->
+    </div>
+
+   
+</div>

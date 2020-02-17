@@ -1,0 +1,78 @@
+<style>
+   
+   ul li {
+        list-style: none;
+        padding: 0 !important;
+    }
+</style>
+<div class="weibodetail-container" ng-include="'views/includes/topbar.html'"
+    ng-init="titleSection='more comments';  closeToHome = true; noColor = true">
+</div>
+
+
+
+
+
+
+<div class="weibodetail-content" ng-controller="moreController as home" style="background-color: #F2F3F5;">
+  
+  <!-- 修改 -->
+<!-- <nav class="tab-bar">
+  <section class="left-small">
+    <a ng-click="cancel()">
+      <i class="icon-arrow-left3 icon-back"></i>
+      <span class="text-back" translate>Back</span>
+    </a>
+  </section>
+  <section class="middle tab-bar-section">
+    <h1 class="title ellipsis" ng-style="{'color':color}" translate>
+      more comments
+    </h1>
+  </section>
+</nav> -->
+  <!--  -->
+   <div style="width:100%;background-color: #F2F3F5;margin-bottom: 8px;padding:10px 0">
+    <!-- 每条微博内容 -->
+    <div style="font-size: 12px;width:91%;margin: 0 auto;">
+        <div class="weiboname" style="padding-top:8px;">
+            <span>{{data.mainComment.nickName}}</span>: <span>{{data.mainComment.commentsContent}}</span>
+           
+          </div>
+        <div style="display: flex;justify-content: space-between;align-items: center;padding-top:8px;">
+          
+            <!-- <div style="font-size: 11px;" ng-click="copyWeiboid(data.mainComment.weiboId)">{{data.mainComment.weiboId}}</div> -->
+            <time >{{data.mainComment.createTime | amTimeAgo}}</time>
+        </div>
+        <!-- <div style="padding-top:5px;">
+            {{data.mainComment.commentsContent}}
+        </div> -->
+    </div>
+   </div>
+   <!--  -->
+    <div ng-if="data.list.length>0" > 
+        <div style="font-size:12px;margin-bottom: 8px;background-color: #fff;" ng-repeat="key in data.list" >
+        <div  style="width:91%;margin:0 auto;">
+          <div class="weiboname" style="padding-top:5px;">
+            <span>{{key.nickName}}</span>: <span>{{key.commentsContent}}</span>
+          </div>
+          <div  style="display:flex;justify-content: space-between;align-items: center;padding-top:5px;font-size: 11px;"  >
+            <!-- <div style="font-size: 11px;" ng-click="copyWeiboid(key.weiboId)">{{key.weiboId}}</div> -->
+            <time >{{key.createTime | amTimeAgo}}</time> 
+          </div>
+          <!-- <div style="padding-top:5px;" ng-click="gotodetail(key.weiboId)">
+            <span>{{key.nickName}}</span>: <span>{{key.commentsContent}}</span>
+          </div> -->
+
+        </div>
+          <!-- <div style="width:91%;margin:0 auto;margin-top:8px; display: flex;justify-content:space-between;align-items: center;height:35px;line-height:35x;font-size:12px;border-top:1px solid #F2F3F5;">
+            <div ng-click="unkown()">123上链详情</div>
+            <div ng-click="gotomicroblog('comment',key.weiboId)">评论 {{key.comments}}</div>
+            <div ng-click="gotomicroblog('dislike',key.weiboId)">👎{{key.unlikeNums}}</div>
+            <div ng-click="gotomicroblog('like',key.weiboId)">👍{{key.likenum}}</div>
+          </div> -->
+        </div>
+      </div>
+      <div ng-if="data.list.length==0" style="background-color:#fff;">
+        <div style="width:91%;margin:0 auto;padding-top:5px;font-size:12px">暂无回复内容</div>
+      </div>
+</div>

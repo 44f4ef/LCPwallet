@@ -1248,7 +1248,7 @@ msgstr "Permintaan Kata Sandi"
 
 #: public/views/modals/customized-amount.html:8
 #: public/views/walletHome.html:312
-msgid "Request a specific amount"
+msgid "Request funds"
 msgstr "Meminta jumlah tertentu"
 
 #: public/views/correspondentDevice.html:336

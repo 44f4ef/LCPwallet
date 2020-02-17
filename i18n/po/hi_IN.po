@@ -1248,7 +1248,7 @@ msgstr "पासवर्ड का अनुरोध"
 
 #: public/views/modals/customized-amount.html:8
 #: public/views/walletHome.html:312
-msgid "Request a specific amount"
+msgid "Request funds"
 msgstr "एक खास रकम की अनुरोध करें"
 
 #: public/views/correspondentDevice.html:336

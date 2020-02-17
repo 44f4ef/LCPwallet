@@ -3,12 +3,12 @@
   version="1.0.2"
   android-versionCode="1073"
   ios-CFBundleVersion="1.0.2" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>LCP</name>
+    <name>lovechainplus</name>
     <description>
       Lovecoin Plus wallet.
     </description>
-    <author email="o@obyte.org" href="https://obyte.org">
-        Obyte
+    <author email="lovechainltd@gmail.com" href="https://lovecoinplus.com">
+        LCP
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -85,7 +85,7 @@
 				        <string>public.data</string>
 				    </array>
 				    <key>UTTypeDescription</key>
-				    <string>Obyte Private Coin</string>
+				    <string>LCP Private Coin</string>
 				    <key>UTTypeIdentifier</key>
 				    <string>org.obyte.coin</string>
 				    <key>UTTypeTagSpecification</key>
@@ -93,7 +93,7 @@
 				        <key>public.filename-extension</key>
 				        <string>coin</string>
 				        <key>public.mime-type</key>
-				        <string>application/x-obyte</string>
+				        <string>application/x-lcp</string>
 				    </dict>
 				</dict>
 				</array>
@@ -102,12 +102,12 @@
 	    	<array>
 			    <dict>
 			        <key>CFBundleTypeName</key>
-			        <string>Obyte Private Coin</string>
+			        <string>LCP Private Coin</string>
 			        <key>LSHandlerRank</key>
 			        <string>Owner</string>
 			        <key>LSItemContentTypes</key>
 			        <array>
-			            <string>org.obyte.coin</string>
+			            <string>org.lcp.coin</string>
 			        </array>
 			    </dict>
 			</array>

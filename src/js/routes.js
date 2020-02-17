@@ -86,6 +86,7 @@ angular
           }
         }
       });
+      
 
     $stateProvider      
       .state('walletHome', {
@@ -93,13 +94,23 @@ angular
         walletShouldBeComplete: true,
         needProfile: true,
         deepStateRedirect: true,
-    	sticky: true,
+      	sticky: true,
         views: {
           'main': {
             templateUrl: 'views/walletHome.html',
           },
         }
       })
+      .state('walletHome.weibo', {  
+        url: '/weibo',
+        views: {
+          'main': {
+            templateUrl: 'views/weibo.html',
+          },
+        }
+      })
+     
+
       .state('unsupported', {
         url: '/unsupported',
         needProfile: false,
@@ -553,6 +564,58 @@ angular
         },
       }
     })
+
+    .state('microblog', {
+      url: '/microblog',
+      params:{ 'flagId': null,'weiboId':null,'commentId':null},
+      needProfile: true,
+      views: {
+        'main': {
+          templateUrl: 'views/microblog.html'
+        },
+      }
+    })
+
+    
+   
+
+    .state('myblog', {
+      url: '/myblog',
+      needProfile: true,
+      views: {
+        'main': {
+          templateUrl: 'views/myblog.html'
+        },
+      }
+    })
+
+  
+
+    .state('weiboDetail', {
+      // url: '/weiboDetail?weiboId',
+      url: '/weiboDetail',
+      params:{weiboId:null},
+      needProfile: true,
+      views: {
+        'main': {
+          templateUrl: 'views/weiboDetail.html'
+        },
+      }
+    })
+
+    .state('more', {
+      url: '/more',
+      params:{commentId:null},
+      needProfile: true,
+      views: {
+        'main': {
+          templateUrl: 'views/more.html'
+        },
+      }
+    })
+
+
+
       .state('cordova', { // never used
         url: '/cordova/:status/:isHome',
         views: {

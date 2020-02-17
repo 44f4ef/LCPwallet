@@ -1,0 +1,434 @@
+
+<style>
+  .indi_text{
+     resize: auto !important;
+     text-indent: 0px !important;
+     border-style: solid !important;
+     white-space: pre-wrap !important;
+     overflow-wrap: break-word !important;
+     resize: auto !important;
+     flex-direction: column !important;
+     border-color: #888!important;
+     border-width:1px !important;
+     height:200px !important;
+ }
+</style>
+
+<div class="topbar-container" ng-include="'views/includes/topbar.html'"
+    ng-init="titleSection='Create New Weibo';  closeToHome = true; noColor = true">
+</div>
+
+
+
+<!--send-->
+<div ng-controller="microblogController as home">
+    <div id="send" class="send " ng-init="assetIndexSelectorValue=0;home.shownForm='payment'"
+        style="background-color:#F2F3F5;">
+ <!-- <button ng-click="$root.go('comment')"> 跳转到页面</button> -->
+    
+        <div>
+            <h4 class="title m0">
+                <a class="right lh" ng-if="index.availableBalanceBytes > 0 && !home.blockUx && !home.lockAmount"
+                    ng-click="home.sendAll(index.availableMaxBalance, 0)" translate> Send All
+                </a>
+               
+                <div class="size-10">
+                    <div class="weibo-box">
+                        <textarea  name="weibo_names"  ng-model="home.weibo_cont"
+                            placeholder="请输入微博内容" class="m0 indi_text" type="text" style="margin-bottom: 25px" required
+                            maxlength="256" row="8"
+                            ></textarea>
+                    </div>
+                    <!-- <span ng-click='home.getlcpvalue()'>获取lcp的值</span>  -->
+                    <div class="text-bold" style="padding-left:20px;margin-bottom: 10px;">
+                        <span translate>What to send</span>:
+                        <span style="padding-left:10px;">{{home.restvalue}}</span>
+                    </div>
+                    <div class="text-bold" style="padding-left:20px;margin-bottom: 10px;">
+                        <span>LCP:</span>
+                        <span style="padding-left:10px;">{{_amount}}</span>
+                    </div>
+
+                </div>
+                <!-- <div class="size-10" ng-hide="true">
+                    <span class="text-bold" style="display:inline-block">
+                        <span translate>What to send</span>:
+                    </span>
+                    <span style="padding-left:10px;">{{home.restvalue}}</span>
+                    <select style="position:inline-block;width:250px;margin-left:20px" class="m10t"
+                        ng-model="assetIndexSelectorValue" ng-disabled="home.blockUx || home.lockAsset"
+                        ng-change="home.switchForms()">
+                        <option ng-repeat="balance in index.arrBalances" ng-value="index.arrBalances.indexOf(balance)">
+
+                            {{
+                      (balance.asset === 'base' ? 
+                      'LCP' : 
+                      (balance.asset == index.BLACKBYTES_ASSET ? 'Blackbytes' : (balance.name || balance.asset))) 
+                      + ' (' 
+                      + (balance.stableStr ? balance.stableStr : (balance.stable.toLocaleString())) 
+                      + (balance.pending ? ' ' 
+                      + ('confirmed' | translate) : ' ' 
+                      + ('available' | translate) ) 
+                      + ')'
+                    }}
+                        </option>
+                        <option ng-value="-1" translate>Data into datafeed</option>
+                        <option ng-value="-2" translate>Attestation</option>
+                        <option ng-value="-3" translate>Profile</option>
+                        <option ng-value="-4" translate>Data</option>
+                        <option ng-value="-5" translate>Poll</option>
+                    </select>
+                    <br>
+
+                </div> -->
+            </h4>
+        </div>
+        <div class="row m20t" ng-show="home.shownForm=='payment'" style="width:90%; border-radius:15px;">
+            <div class="large-12 large-centered columns">
+                <form name="sendPaymentForm" ng-submit="home.submitPayment()"
+                    ng-disabled="home.blockUx || home.onGoingProcess" novalidate>
+                    <div class="box-notification" ng-show="home.error" ng-click="home.resetError()">
+                        <span class="text-warning">
+                            {{home.error|translate}}
+                        </span>
+                        <a class="close-notification text-warning">&#215;</a>
+                    </div>
+
+                    <div class="row" ng-hide="home.hideAmount">
+                        <div class="large-12 medium-12 columns">
+                            <div class="right"
+                                ng-hide="sendPaymentForm.amount.$pristine && !sendPaymentForm.amount.$modelValue ">
+                                <span class="has-error right size-12" ng-if="sendPaymentForm.amount.$invalid">
+                                    <i class="icon-close-circle size-14"></i>
+                                    <span clas="vm" translate>Not valid</span>
+                                </span>
+                                <small class="text-primary right" ng-if="!sendPaymentForm.amount.$invalid">
+                                    <i class="icon-checkmark-circle size-14"></i>
+                                </small>
+                            </div>
+                            <div>
+
+                                <label for="amount">
+                                    <span translate ng-if="!home.send_multiple">Amount</span>
+                                    <span translate ng-if="home.send_multiple">Total amount111</span>
+                                    <!-- <a ng-click="home.setSendAll()" ng-show="!home.bSendAll && !home.lockAmount"
+                                        style="text-transform: none; margin-left: 10px" translate>Send all</a> -->
+                                </label>
+                                <div class="input">
+                                    <input type="number" id="amount"
+                                        ng-disabled="home.blockUx || home.lockAmount || home.bSendAll" name="amount"
+                                        ng-attr-placeholder="{{(home.bSendAll ? (index.arrBalances[index.assetIndex].asset === 'base' ? 'All minus fees' : 'All') : 'Amount')|translate}}"
+                                        ng-minlength="0.00000001" ng-maxlength="10000000000" ng-model="_amount"
+                                        valid-amount="{{index.arrBalances[index.assetIndex].asset}}"
+                                        ng-required="!home.bSendAll && !home.send_multiple" autocomplete="off"
+                                        ng-focus="home.formFocus('amount')" ng-blur="home.formFocus(false)">
+                                    <a class="postfix" ng-click="$root.go('walletHome.preferencesUnit')"
+                                        ng-if="index.arrBalances.length > 0 && index.arrBalances[index.assetIndex].asset === 'base'">{{home.unitName}}</a>
+                                    <a class="postfix" ng-click="$root.go('walletHome.preferencesBbUnit')"
+                                        ng-if="index.arrBalances.length > 0 && index.arrBalances[index.assetIndex].asset === index.BLACKBYTES_ASSET">{{home.bbUnitName}}</a>
+                                    <a class="postfix"
+                                        ng-click="home.openInExplorer(index.arrBalances[index.assetIndex].asset)"
+                                        ng-if="index.arrBalances.length > 0 && index.arrBalances[index.assetIndex].asset !== 'base' && index.arrBalances[index.assetIndex].asset !== index.BLACKBYTES_ASSET && index.arrBalances[index.assetIndex].name">{{index.arrBalances[index.assetIndex].name | limitTo:16}}{{index.arrBalances[index.assetIndex].name.length>16 ? '...' : ''}}</a>
+                                    <a class="postfix"
+                                        ng-click="home.openInExplorer(index.arrBalances[index.assetIndex].asset)"
+                                        ng-if="index.arrBalances.length > 0 && index.arrBalances[index.assetIndex].asset !== 'base' && index.arrBalances[index.assetIndex].asset !== index.BLACKBYTES_ASSET && !index.arrBalances[index.assetIndex].name">of
+                                        {{index.arrBalances[index.assetIndex].asset.substr(0,4)}}</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="mtabset" ng-show="index.arrBalances.length > 0 && !home.lockAddress">
+                        <div class="mtab-title active" ng-click="mtab = 1" ng-class="{'active': mtab == 1}">
+                           000 {{(index.arrBalances[index.assetIndex].is_private ? 'To my other wallet' : 'To LCP address or email or username')|translate}}
+                        </div>
+                        <div class="mtab-title"
+                            ng-click="mtab = !home.send_multiple ? 2 : mtab; _address = !home.send_multiple ? null : _address"
+                            ng-class="{'active': mtab == 2, 'disabled': home.send_multiple}" translate>Share via message
+                        </div>
+                    </div> -->
+
+                    <div class="mtab" ng-class="{'active': mtab == 1}" ng-init="mtab = 1; home.send_multiple = false;">
+                        <div ng-hide="home.hideAddress">
+                            <div class="row collapse" style="padding-top: 5px;min-height: 24px;">
+                                <label for="address" class="left" ng-if="home.lockAddress">
+                                    <span translate>To LCP address</span>
+                                </label>
+                                <span ng-if="!home.send_multiple">
+                                    <span class="has-error right size-12"
+                                        ng-show="sendPaymentForm.address.$invalid && _address">
+                                        <i class="icon-close-circle size-14"></i>
+                                        <span class="vm" translate>Not valid</span>
+                                    </span>
+                                    <small class="right text-primary"
+                                        ng-show="!sendPaymentForm.address.$invalid && _address">
+                                        <i class="icon-checkmark-circle size-14"></i>
+                                    </small>
+                                </span>
+                                <span ng-if="home.send_multiple">
+                                    <span class="has-error right size-12"
+                                        ng-show="sendPaymentForm.addresses.$invalid && !sendPaymentForm.addresses.$pristine">
+                                        <i class="icon-close-circle size-14"></i>
+                                        <span class="vm" translate>Not valid</span>
+                                        <span
+                                            class="vm">{{(sendPaymentForm.addresses.$error | objectKeys)[0].indexOf('line-') > -1 ? (sendPaymentForm.addresses.$error | objectKeys)[0].replace('line-', '') : ''}}</span>
+                                    </span>
+                                    <small class="right text-primary" ng-show="!sendPaymentForm.addresses.$invalid">
+                                        <i class="icon-checkmark-circle size-14"></i>
+                                    </small>
+                                </span>
+                            </div>
+
+                            <div class="input">
+                                <input ng-if="!home.send_multiple" class="m0" type="text" id="address" name="address"
+                                    ng-disabled="home.blockUx || home.lockAddress || index.arrBalances[index.assetIndex].is_private"
+                                    ng-attr-placeholder="{{(home.canSendExternalPayment() ? 'LCP address or email or username' : 'Obyte address of your other wallet &#8594;')|translate}}"
+                                    ng-model="_address" ng-required valid-address-or-account
+                                    ng-focus="home.formFocus('address')" ng-blur="home.formFocus(false)">
+                                <!--<input ng-if="!home.send_multiple && index.arrBalances[index.assetIndex].is_private" class="m0" type="text" id="address" name="address" ng-disabled="home.blockUx || home.lockAddress || !home.canSendExternalPayment()" ng-attr-placeholder="{{home.canSendExternalPayment() ? 'Obyte address' : 'Obyte address of your other wallet &#8594;'}}" ng-model="_address" ng-required valid-address ng-focus="home.formFocus('address')" ng-blur="home.formFocus(false)">-->
+                                <textarea ng-if="home.send_multiple" class="m0" type="text" name="addresses"
+                                    placeholder="Obyte address, amount {{index.arrBalances[index.assetIndex].asset === 'base' ? 'in ' + home.unitName : 'of ' + (index.arrBalances[index.assetIndex].name || index.arrBalances[index.assetIndex].asset.substr(0,4) | limitTo:16)}}&#10;M7G2CZDBV7FWH2QMWUNXQ4MSLIZPHX3U, {{100000 / home.unitValue}}&#10;5OJ2RQ3AG7RLS6HFDAKOZGBZE6HKUWAZ, {{5000000 / home.unitValue}}&#10;not more than 120 rows"
+                                    ng-model="_addresses" required
+                                    valid-addresses="{{index.arrBalances[index.assetIndex].asset}}"
+                                    style="margin-bottom: 25px" rows="4" msd-elastic="\n"
+                                    ng-change="_amount=+(_addresses | sumNumbers).toLocaleString(['EN-US'], {maximumFractionDigits: index.arrBalances[index.assetIndex].decimals}).split(',').join('')"></textarea>
+
+                                <!--<div class="addressbook-input" ng-show="!sendPaymentForm.address.$invalid && _address">
+                        {{index.addressbook[_address] || _address}}
+                      </div>-->
+                                <a class="postfix size-12 m0 text-gray"
+                                    ng-hide="home.blockUx || home.lockAddress || home.send_multiple"
+                                    ng-click="openDestinationAddressModal(index.otherWallets, _address)">
+                                    <i class="icon-wallet size-18"
+                                        style="margin-right: -3px;vertical-align: baseline;"></i>
+                                </a>
+                            </div>
+                            <div ng-if="home.deviceAddressIsKnown()"
+                                style="font-size: 11px; font-weight: bold; margin-top: -1.5rem; margin-bottom: 1.5rem;">
+                                <a ng-click="home.openBindModal()">
+                                    <span ng-if="!home.binding" translate>Bind the payment to a condition</span>
+                                    <span ng-if="home.binding" translate>This payment is bound to a condition</span>
+                                </a>
+                            </div>
+                            <div ng-if="!index.arrBalances[index.assetIndex].is_private && !home.blockUx && !home.lockAddress && home.canSendExternalPayment()"
+                                style="font-size: 11px; font-weight: bold; margin-top: -1.5rem; margin-bottom: 1.5rem; float: right;">
+                                <!-- <a ng-click="home.lockAmount = home.send_multiple = !home.send_multiple"
+                                    class="text-gray" style="border-bottom: 1px dashed grey;">
+                                    <span ng-if="home.send_multiple" translate>switch to single address</span>
+                                    <span ng-if="!home.send_multiple" translate
+                                        ng-click="home.resetForm(sendPaymentForm)">switch to
+                                        multi-address</span>
+                                </a> -->
+                            </div>
+                            <div id="binding-drop" class="f-dropdown" data-dropdown-content style="padding: 10px;"
+                                translate>To bind
+                                the payment to a condition, please click the peer's address in chat</div>
+                            <div ng-if="!home.deviceAddressIsKnown()"
+                                style="font-size: 11px; font-weight: bold; margin-top: -1.5rem; margin-bottom: 1.5rem">
+                                <a dropdown-toggle="#binding-drop" data-options="align:top">
+                                    <span translate class="text-gray">Bind the payment to a condition</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="index.bHasMerkle">
+                            <div class="large-12 columns">
+                                <label for="merkle_proof"><span translate>Merkle proof</span>
+                                    <small translate ng-hide="!sendPaymentForm.merkle_proof.$pristine">optional</small>
+                                    <small translate class="has-error"
+                                        ng-show="sendPaymentForm.merkle_proof.$invalid && !sendPaymentForm.merkle_proof.$pristine">too
+                                        long!</small>
+                                </label>
+                                <div class="input">
+                                    <textarea id="merkle_proof" ng-disabled="home.blockUx" name="merkle_proof"
+                                        maxlength="4096" ng-model="_merkle_proof"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-hide="home.hideNote">
+                            <div class="large-12 columns">
+                                <label for="comment"><span translate>Note</span>
+                                    <small translate ng-hide="!sendPaymentForm.comment.$pristine">optional</small>
+                                    <small translate class="has-error"
+                                        ng-show="sendPaymentForm.comment.$invalid && !sendPaymentForm.comment.$pristine">too
+                                        long!</small>
+                                </label>
+                                <div class="input">
+                                    <textarea id="comment" ng-disabled="home.blockUx" name="comment" ng-maxlength="500"
+                                        ng-model="_comment" ng-focus="home.formFocus('msg')"
+                                        ng-blur="home.formFocus(false)"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="" ng-show="index.m < index.n && index.m > 1">
+                            <div class="large-12 medium-12">
+                                <label>
+                                    <span translate>Who signs:</span>
+                                </label>
+                                <cosigners></cosigners>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="!home.onGoingProcess">
+                            <!-- <div class="large-6 medium-6 small-6 columns"
+                                ng-show="!home.blockUx && !home.send_multiple && (home.lockAddress || home.lockAmount || home.bSendAll)">
+                                <a ng-click="home.resetForm(sendPaymentForm)"
+                                    class="button expand outline dark-gray round" translate>Cancel</a>
+                            </div> -->
+                            <div class="columns"
+                                ng-class="{'small-6 medium-6 large-6':!home.send_multiple && (home.lockAddress || home.lockAmount || home.bSendAll)}">
+                                <button type="submit" ng-if="mtab == 1" class="button black round expand"
+                                    ng-disabled="home.current_payment_key || sendPaymentForm.$invalid || home.blockUx || index.isOffline || !index.isEnoughSignersSelected()"
+                                    ng-style="{'background-color':index.backgroundColor}" translate>
+                                    Send666
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="mtab" ng-class="{'active': mtab == 2}">
+                        <br>
+                        <div class="" ng-show="index.m < index.n && index.m > 1">
+                            <div class="large-12 medium-12">
+                                <label>
+                                    <span translate>Who signs:</span>
+                                </label>
+                                <cosigners></cosigners>
+                            </div>
+                        </div>
+                      
+                        <p translate ng-show="index.arrBalances[index.assetIndex].is_private">Click this button to
+                            create a
+                            payment file and send it to a recipient.</p>
+                        <button type="submit" class="button black round expand"
+                            ng-disabled="home.current_payment_key || home.blockUx || index.isOffline || !index.isEnoughSignersSelected() || sendPaymentForm.amount.$invalid"
+                            translate ng-style="{'background-color':index.backgroundColor}">Share via message</button>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+        <div ng-show="home.shownForm=='data' && index.isSingleAddress">
+            <div class="large-12 large-centered columns">
+                <form name="sendDataForm" ng-submit="home.submitData()"
+                    ng-disabled="home.blockUx || home.onGoingProcess" novalidate ng-init="home.feedvaluespairs=[{}]">
+                    <div class="box-notification" ng-show="home.error" ng-click="home.resetError()">
+                        <span class="text-warning">
+                            {{home.error|translate}}
+                        </span>
+                        <a class="close-notification text-warning">&#215;</a>
+                    </div>
+
+                    <div class="row m20t text-gray size-12" ng-show="assetIndexSelectorValue == -1" translate>
+                        Post values into datafeeds manually, be an oracle.
+                    </div>
+                    <div class="row m20t text-gray size-12" ng-show="assetIndexSelectorValue == -2" translate>
+                        Attest profile data linked to any Obyte address.
+                    </div>
+                    <div class="row m20t text-gray size-12" ng-show="assetIndexSelectorValue == -3" translate>
+                        Post your profile data, anything you want to say about yourself.
+                    </div>
+                    <div class="row m20t text-gray size-12" ng-show="assetIndexSelectorValue == -4" translate>
+                        Post arbitrary key-value pairs of data into Obyte network.
+                    </div>
+                    <div class="row m20t text-gray size-12" ng-show="assetIndexSelectorValue == -5" translate>
+                        Post a poll into Obyte network that users can vote on with Poll bot.
+                    </div>
+
+
+                    <div class="row m20t" ng-if="assetIndexSelectorValue == -2">
+                        <label style="float: left;">
+                            <span translate>Address to attest</span>
+                        </label>
+                        <span ng-hide="sendDataForm.address.$pristine">
+                            <span class="has-error right size-12"
+                                ng-show="sendDataForm.address.$invalid && home.attested_address">
+                                <i class="icon-close-circle size-14"></i>
+                                <span class="vm" translate>Not valid</span>
+                            </span>
+                            <small class="right text-primary" ng-show="!sendDataForm.address.$invalid">
+                                <i class="icon-checkmark-circle size-14"></i>
+                            </small>
+                        </span>
+                        <input type="text" name="address" ng-model="home.attested_address" placeholder="Obyte address"
+                            valid-address ng-required="true">
+                    </div>
+
+
+
+                    <div class="row m20t" ng-if="assetIndexSelectorValue == -5">
+                        <label style="float: left;">
+                            <span translate>Question to be voted on</span>
+                        </label>
+                        <input type="text" name="poll_question" ng-model="home.poll_question"
+                            placeholder="Poll question" ng-required="true">
+                    </div>
+                    <div class="row m20t">
+                        <label>
+                            <span>{{(assetIndexSelectorValue == -5 ? 'Options for answering' : 'Values')|translate}}</span>
+                        </label>
+                        <span ng-repeat="pair in home.feedvaluespairs">
+                            <input type="text" ng-model="pair.name"
+                                placeholder="{{([-2, -3].includes(assetIndexSelectorValue) ? 'Profile field' : ([-4, -5].includes(assetIndexSelectorValue) ? (assetIndexSelectorValue == -4 ? 'Field' : 'Answer') : 'Datafeed name'))|translate}}"
+                                class="datafeed_input" ng-required="true" ng-maxlength="64" maxlength="64"
+                                ng-style="(assetIndexSelectorValue == -5 ? {'width':'90%'} : {})">
+                            <input ng-if="assetIndexSelectorValue != -5" type="text" ng-model="pair.value"
+                                placeholder="{{([-2, -3].includes(assetIndexSelectorValue) ? 'Profile field value' : (assetIndexSelectorValue == -4 ? 'Value' : 'Datafeed value'))|translate}}"
+                                class="datafeed_input" ng-required="true" ng-maxlength="64" maxlength="64">
+                            <a ng-show="$last && !$first"
+                                ng-click="home.feedvaluespairs.splice(home.feedvaluespairs.length-1)"><i
+                                    class="fi-minus size-18 m10r" style="vertical-align: middle;"></i></a>
+                        </span>
+                        <i data-trans="{{'Add answer' | translate}}" data-trans="{{'Add fields' | translate}}"
+                            data-trans="{{'Options for answering' | translate}}" data-trans="{{'Values' | translate}}"
+                            data-trans="{{'Answer' | translate}}" data-trans="{{'Field' | translate}}"
+                            data-trans="{{'Profile field' | translate}}" data-trans="{{'Datafeed name' | translate}}"
+                            data-trans="{{'Profile field value' | translate}}" data-trans="{{'Value' | translate}}"
+                            data-trans="{{'Datafeed value' | translate}}" data-trans="{{'confirmed' | translate}}"
+                            data-trans="{{'available' | translate}}"></i>
+                        <div class="clear"></div>
+                        <a ng-click="home.feedvaluespairs.push({})" style="padding:10px 0;"
+                            ng-show="home.feedvaluespairs.length < 20">
+                            <i class="fi-plus size-18 m10r" style="vertical-align: middle;"></i>
+                            <span
+                                class="text-close size-12">{{(assetIndexSelectorValue == -5 ? 'Add answer' : 'Add fields')|translate}}</span>
+                        </a>
+                    </div>
+
+                    <div class="" ng-show="index.m < index.n && index.m > 1">
+                        <div class="large-12 medium-12">
+                            <label>
+                                <span translate>Who signs:</span>
+                            </label>
+                            <cosigners></cosigners>
+                        </div>
+                    </div>
+
+                    <div class="row m20t" ng-show="!home.onGoingProcess">
+                        <div class="columns">
+                            <button type="submit" class="button black round expand"
+                                ng-disabled="sendDataForm.$invalid || home.blockUx || index.isOffline || !index.isEnoughSignersSelected()"
+                                ng-style="{'background-color':index.backgroundColor}" translate>
+                                Send555
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div ng-show="home.shownForm=='data' && !index.isSingleAddress">
+            <div class="large-12 large-centered columns" style="padding-top: 10px" translate>
+                To be able to send arbitrary data into O<sub>byte</sub> network, please switch to a single-address
+                wallet
+                first or create one.
+            </div>
+        </div>
+        <!--div class="row columns m20t" ng-hide="home.canSendPayment()">
+            This is a private asset, please send it only by clicking links in the chat.
+        </div-->
+    </div>
+
+</div>
+<!-- END Send -->

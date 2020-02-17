@@ -781,7 +781,7 @@ angular.module('copayApp.controllers').controller('indexController', function($r
   },
   {
     'title': gettext('Nodes'),
-    'icon': 'icon-target',
+    'icon': 'icon-bank',
     'link': 'nodes'
   }
 ];

@@ -1248,7 +1248,7 @@ msgstr "Solicitare parolă"
 
 #: public/views/modals/customized-amount.html:8
 #: public/views/walletHome.html:312
-msgid "Request a specific amount"
+msgid "Request funds"
 msgstr "Solicită o valoare specifică"
 
 #: public/views/correspondentDevice.html:336

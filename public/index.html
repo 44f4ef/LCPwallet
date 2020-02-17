@@ -13,7 +13,6 @@
   <link rel="shortcut icon" href="img/icons/favicon-circle.ico">
 </head>
 <body ng-cloak class="ng-cloak">
-
   <div class="page" 
     ng-controller="indexController as index" 
     ng-swipe-disable-mouse 
@@ -23,7 +22,6 @@
     <div class="off-canvas-wrap" id="off-canvas-wrap">
       <div class="inner-wrap">
         <div ng-include="'views/includes/sidebar.html'" ng-if="index.hasProfile"></div>
-
         <div notifications="right top"></div> 
         <div ng-include="'views/includes/password.html'" ng-if="index.askPassword"></div>
         <div ng-include="'views/includes/alert.html'" ng-if="index.showAlert"></div>
@@ -51,9 +49,15 @@
 
   <!-- DO NOT DELETE THIS COMMET  -->
   <!-- PLACEHOLDER: CORDOVA SRIPT -->
-
+  
+  <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.js"></script>
+  
+ 
   <script src="obyte.js"></script>
   <script>console.log("done scripts");</script>
+ 
+ 
+ 
 
 </body>
 </html>

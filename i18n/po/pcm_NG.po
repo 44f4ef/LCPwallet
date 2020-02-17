@@ -1248,8 +1248,8 @@ msgstr "Request Password"
 
 #: public/views/modals/customized-amount.html:8
 #: public/views/walletHome.html:312
-msgid "Request a specific amount"
-msgstr "Request a specific amount"
+msgid "Request funds"
+msgstr "Request funds"
 
 #: public/views/correspondentDevice.html:336
 msgid "Request payment"
